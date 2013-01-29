@@ -29,6 +29,31 @@
 		62FDCDBF16B7CEF300FA867D /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB016B7CEF300FA867D /* vec2.c */; };
 		62FDCDC016B7CEF300FA867D /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB216B7CEF300FA867D /* vec3.c */; };
 		62FDCDC116B7CEF300FA867D /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB416B7CEF300FA867D /* vec4.c */; };
+		62FDCDC416B7D02D00FA867D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
+		62FDCDC516B7D02D00FA867D /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
+		62FDCDC616B7D02D00FA867D /* GSOpenGLShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSOpenGLShaderController.m */; };
+		62FDCDC716B7D02D00FA867D /* GSOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9516B7CD3100FA867D /* GSOpenGLView.m */; };
+		62FDCDC816B7D02D00FA867D /* Tutorial1.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9616B7CD3100FA867D /* Tutorial1.m */; };
+		62FDCDC916B7D02D00FA867D /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9C16B7CEF300FA867D /* aabb.c */; };
+		62FDCDCA16B7D02D00FA867D /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9F16B7CEF300FA867D /* mat4stack.c */; };
+		62FDCDCB16B7D02D00FA867D /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA116B7CEF300FA867D /* matrix.c */; };
+		62FDCDCC16B7D02D00FA867D /* mat3.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA416B7CEF300FA867D /* mat3.c */; };
+		62FDCDCD16B7D02D00FA867D /* mat4.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA616B7CEF300FA867D /* mat4.c */; };
+		62FDCDCE16B7D02D00FA867D /* plane.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA816B7CEF300FA867D /* plane.c */; };
+		62FDCDCF16B7D02D00FA867D /* quaternion.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAA16B7CEF300FA867D /* quaternion.c */; };
+		62FDCDD016B7D02D00FA867D /* ray2.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAC16B7CEF300FA867D /* ray2.c */; };
+		62FDCDD116B7D02D00FA867D /* utility.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAE16B7CEF300FA867D /* utility.c */; };
+		62FDCDD216B7D02D00FA867D /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB016B7CEF300FA867D /* vec2.c */; };
+		62FDCDD316B7D02D00FA867D /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB216B7CEF300FA867D /* vec3.c */; };
+		62FDCDD416B7D02D00FA867D /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB416B7CEF300FA867D /* vec4.c */; };
+		62FDCDD616B7D02D00FA867D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FDCD8E16B7CCED00FA867D /* OpenGL.framework */; };
+		62FDCDD716B7D02D00FA867D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FDCD7116B7C8B000FA867D /* Cocoa.framework */; };
+		62FDCDD916B7D02D00FA867D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD7A16B7C8B000FA867D /* InfoPlist.strings */; };
+		62FDCDDA16B7D02D00FA867D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD8016B7C8B000FA867D /* Credits.rtf */; };
+		62FDCDDB16B7D02D00FA867D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD8616B7C8B000FA867D /* MainMenu.xib */; };
+		62FDCDE416B7D0C500FA867D /* Tutorial2.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDE316B7D0C500FA867D /* Tutorial2.m */; };
+		62FDCDEA16B7D12900FA867D /* tutorial2.fs in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCDE616B7D0D600FA867D /* tutorial2.fs */; };
+		62FDCDEB16B7D12900FA867D /* tutorial2.vs in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCDE716B7D0D600FA867D /* tutorial2.vs */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +101,10 @@
 		62FDCDB316B7CEF300FA867D /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
 		62FDCDB416B7CEF300FA867D /* vec4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vec4.c; sourceTree = "<group>"; };
 		62FDCDB516B7CEF300FA867D /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
+		62FDCDDF16B7D02D00FA867D /* Tutorial2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62FDCDE316B7D0C500FA867D /* Tutorial2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial2.m; sourceTree = "<group>"; };
+		62FDCDE616B7D0D600FA867D /* tutorial2.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tutorial2.fs; sourceTree = "<group>"; };
+		62FDCDE716B7D0D600FA867D /* tutorial2.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tutorial2.vs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +114,15 @@
 			files = (
 				62FDCD8F16B7CCED00FA867D /* OpenGL.framework in Frameworks */,
 				62FDCD7216B7C8B000FA867D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62FDCDD516B7D02D00FA867D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62FDCDD616B7D02D00FA867D /* OpenGL.framework in Frameworks */,
+				62FDCDD716B7D02D00FA867D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				62FDCD6E16B7C8B000FA867D /* Tutorial1.app */,
+				62FDCDDF16B7D02D00FA867D /* Tutorial2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +179,7 @@
 				62FDCD8616B7C8B000FA867D /* MainMenu.xib */,
 				62FDCD9B16B7CEF300FA867D /* kazmath */,
 				62FDCD9A16B7CDB000FA867D /* Tutorial */,
+				62FDCDE516B7D0D600FA867D /* Shader */,
 				62FDCD7816B7C8B000FA867D /* Supporting Files */,
 			);
 			path = "OpenGL-Tutorial";
@@ -160,6 +200,7 @@
 		62FDCD9A16B7CDB000FA867D /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				62FDCDE316B7D0C500FA867D /* Tutorial2.m */,
 				62FDCD9616B7CD3100FA867D /* Tutorial1.m */,
 			);
 			name = Tutorial;
@@ -205,6 +246,15 @@
 			path = GL;
 			sourceTree = "<group>";
 		};
+		62FDCDE516B7D0D600FA867D /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				62FDCDE616B7D0D600FA867D /* tutorial2.fs */,
+				62FDCDE716B7D0D600FA867D /* tutorial2.vs */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +273,23 @@
 			name = Tutorial1;
 			productName = "OpenGL-Tutorial";
 			productReference = 62FDCD6E16B7C8B000FA867D /* Tutorial1.app */;
+			productType = "com.apple.product-type.application";
+		};
+		62FDCDC216B7D02D00FA867D /* Tutorial2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62FDCDDC16B7D02D00FA867D /* Build configuration list for PBXNativeTarget "Tutorial2" */;
+			buildPhases = (
+				62FDCDC316B7D02D00FA867D /* Sources */,
+				62FDCDD516B7D02D00FA867D /* Frameworks */,
+				62FDCDD816B7D02D00FA867D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial2;
+			productName = "OpenGL-Tutorial";
+			productReference = 62FDCDDF16B7D02D00FA867D /* Tutorial2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -248,6 +315,7 @@
 			projectRoot = "";
 			targets = (
 				62FDCD6D16B7C8B000FA867D /* Tutorial1 */,
+				62FDCDC216B7D02D00FA867D /* Tutorial2 */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +328,18 @@
 				62FDCD7C16B7C8B000FA867D /* InfoPlist.strings in Resources */,
 				62FDCD8216B7C8B000FA867D /* Credits.rtf in Resources */,
 				62FDCD8816B7C8B000FA867D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62FDCDD816B7D02D00FA867D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62FDCDEA16B7D12900FA867D /* tutorial2.fs in Resources */,
+				62FDCDEB16B7D12900FA867D /* tutorial2.vs in Resources */,
+				62FDCDD916B7D02D00FA867D /* InfoPlist.strings in Resources */,
+				62FDCDDA16B7D02D00FA867D /* Credits.rtf in Resources */,
+				62FDCDDB16B7D02D00FA867D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +367,31 @@
 				62FDCDBF16B7CEF300FA867D /* vec2.c in Sources */,
 				62FDCDC016B7CEF300FA867D /* vec3.c in Sources */,
 				62FDCDC116B7CEF300FA867D /* vec4.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62FDCDC316B7D02D00FA867D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62FDCDC416B7D02D00FA867D /* main.m in Sources */,
+				62FDCDC516B7D02D00FA867D /* GSAppDelegate.m in Sources */,
+				62FDCDC616B7D02D00FA867D /* GSOpenGLShaderController.m in Sources */,
+				62FDCDC716B7D02D00FA867D /* GSOpenGLView.m in Sources */,
+				62FDCDC816B7D02D00FA867D /* Tutorial1.m in Sources */,
+				62FDCDC916B7D02D00FA867D /* aabb.c in Sources */,
+				62FDCDCA16B7D02D00FA867D /* mat4stack.c in Sources */,
+				62FDCDCB16B7D02D00FA867D /* matrix.c in Sources */,
+				62FDCDCC16B7D02D00FA867D /* mat3.c in Sources */,
+				62FDCDCD16B7D02D00FA867D /* mat4.c in Sources */,
+				62FDCDCE16B7D02D00FA867D /* plane.c in Sources */,
+				62FDCDCF16B7D02D00FA867D /* quaternion.c in Sources */,
+				62FDCDD016B7D02D00FA867D /* ray2.c in Sources */,
+				62FDCDD116B7D02D00FA867D /* utility.c in Sources */,
+				62FDCDD216B7D02D00FA867D /* vec2.c in Sources */,
+				62FDCDD316B7D02D00FA867D /* vec3.c in Sources */,
+				62FDCDD416B7D02D00FA867D /* vec4.c in Sources */,
+				62FDCDE416B7D0C500FA867D /* Tutorial2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +508,30 @@
 			};
 			name = Release;
 		};
+		62FDCDDD16B7D02D00FA867D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenGL-Tutorial/OpenGL-Tutorial-Prefix.pch";
+				INFOPLIST_FILE = "OpenGL-Tutorial/OpenGL-Tutorial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		62FDCDDE16B7D02D00FA867D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenGL-Tutorial/OpenGL-Tutorial-Prefix.pch";
+				INFOPLIST_FILE = "OpenGL-Tutorial/OpenGL-Tutorial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,6 +549,15 @@
 			buildConfigurations = (
 				62FDCD8C16B7C8B000FA867D /* Debug */,
 				62FDCD8D16B7C8B000FA867D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		62FDCDDC16B7D02D00FA867D /* Build configuration list for PBXNativeTarget "Tutorial2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62FDCDDD16B7D02D00FA867D /* Debug */,
+				62FDCDDE16B7D02D00FA867D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
