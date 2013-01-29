@@ -33,7 +33,6 @@
 		62FDCDC516B7D02D00FA867D /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
 		62FDCDC616B7D02D00FA867D /* GSOpenGLShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSOpenGLShaderController.m */; };
 		62FDCDC716B7D02D00FA867D /* GSOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9516B7CD3100FA867D /* GSOpenGLView.m */; };
-		62FDCDC816B7D02D00FA867D /* Tutorial1.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9616B7CD3100FA867D /* Tutorial1.m */; };
 		62FDCDC916B7D02D00FA867D /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9C16B7CEF300FA867D /* aabb.c */; };
 		62FDCDCA16B7D02D00FA867D /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9F16B7CEF300FA867D /* mat4stack.c */; };
 		62FDCDCB16B7D02D00FA867D /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA116B7CEF300FA867D /* matrix.c */; };
@@ -378,7 +377,6 @@
 				62FDCDC516B7D02D00FA867D /* GSAppDelegate.m in Sources */,
 				62FDCDC616B7D02D00FA867D /* GSOpenGLShaderController.m in Sources */,
 				62FDCDC716B7D02D00FA867D /* GSOpenGLView.m in Sources */,
-				62FDCDC816B7D02D00FA867D /* Tutorial1.m in Sources */,
 				62FDCDC916B7D02D00FA867D /* aabb.c in Sources */,
 				62FDCDCA16B7D02D00FA867D /* mat4stack.c in Sources */,
 				62FDCDCB16B7D02D00FA867D /* matrix.c in Sources */,
