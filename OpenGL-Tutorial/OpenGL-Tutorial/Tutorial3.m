@@ -29,7 +29,7 @@ GLuint program;
 
 - (BOOL)prepareRenderData
 {
-    kmMat4 projection;
+    kmMat4 projection; 
     kmMat4 view;
     kmMat4 model;
     kmMat4 MVP; 
