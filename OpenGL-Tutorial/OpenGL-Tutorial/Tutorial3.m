@@ -1,8 +1,8 @@
 //
-//  Tutorial2.m
+//  Tutorial3.m
 //  OpenGL-Tutorial
 //
-//  Created by wei.zhu on 1/24/13.
+//  Created by 朱 巍 on 30/1/13.
 //  Copyright (c) 2013 Juicer. All rights reserved.
 //
 
@@ -20,17 +20,36 @@ static const kmVec3 vertexArrayData[] = {
 };
 GLuint program;
 
-// class Tutorial2
-@interface Tutorial2 : NSObject <GSOpenGLViewDelegate>
+// class Tutorial3
+@interface Tutorial3 : NSObject <GSOpenGLViewDelegate>
 
 @end
 
-@implementation Tutorial2
+@implementation Tutorial3
 
 - (BOOL)prepareRenderData
 {
+    kmMat4 projection;
+    kmMat4 view;
+    kmMat4 model;
+    kmMat4 MVP;
+    
+    kmVec3 eye = {4.0, 3.0, 3.0};
+    kmVec3 center = {0.0, 0.0, 0.0};
+    kmVec3 up = {0.0, 1.0, 0.0};
+    
+    kmMat4PerspectiveProjection(&projection, 45.0f, 4.0f/3.0f, 0.1f, 100.0f);
+    kmMat4LookAt(&view, &eye, &center, &up);
+    kmMat4Identity(&model);
+    
+    kmMat4Multiply(&MVP, &projection, &view);
+    kmMat4Multiply(&MVP, &MVP, &model);
+    
     GSOpenGLShaderController *shaderController = [GSOpenGLShaderController sharedOpenGLShaderController];
-    program = [shaderController programWithVertexShaderFile:@"tutorial2.vs" FragmentShaderFile:@"tutorial2.fs"];
+    program = [shaderController programWithVertexShaderFile:@"tutorial3.vs" FragmentShaderFile:@"tutorial3.fs"];
+    glUseProgram(program);
+    GLint local_MVP = glGetUniformLocation(program, "MVP");
+    glUniformMatrix4fv(local_MVP, 1, GL_FALSE, (GLfloat *)&MVP);
     
     glGenVertexArrays(1, &vertexArrayObj);
     glBindVertexArray(vertexArrayObj);
@@ -72,7 +91,7 @@ GLuint program;
     
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
-    Set_OpenGLViewDelegate(Tutorial2);
+    Set_OpenGLViewDelegate(Tutorial3);
 }
 
 @end

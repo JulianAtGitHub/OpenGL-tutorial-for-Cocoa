@@ -1,6 +1,6 @@
 //
 //  GSOpenGLShaderController.m
-//  OpenGL3D
+//  OpenGL-Tutorial
 //
 //  Created by wei.zhu on 1/28/13.
 //  Copyright (c) 2013 Juicer. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  Tutorial1.m
-//  OpenGL3D
+//  OpenGL-Tutorial
 //
 //  Created by wei.zhu on 1/23/13.
 //  Copyright (c) 2013 Juicer. All rights reserved.
