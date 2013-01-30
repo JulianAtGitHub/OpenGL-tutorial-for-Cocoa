@@ -32,7 +32,7 @@ GLuint program;
     kmMat4 projection;
     kmMat4 view;
     kmMat4 model;
-    kmMat4 MVP;
+    kmMat4 MVP; 
     
     kmVec3 eye = {4.0, 3.0, 3.0};
     kmVec3 center = {0.0, 0.0, 0.0};
