@@ -12,13 +12,16 @@
 #import "GSOpenGLShaderController.h"
 
 // globle value
-GLuint vertexArrayObj;
+
 static const kmVec3 vertexArrayData[] = {
     {-1.0f, -1.0f, 0.0f},
     {1.0f, -1.0f, 0.0f},
     {0.0f,  1.0f, 0.0f},
 };
+
+GLuint vertexBuffer;
 GLuint program;
+GLuint vertexArrayObj;
 
 // class Tutorial2
 @interface Tutorial2 : NSObject <GSOpenGLViewDelegate>
@@ -35,7 +38,6 @@ GLuint program;
     glGenVertexArrays(1, &vertexArrayObj);
     glBindVertexArray(vertexArrayObj);
     
-    GLuint vertexBuffer;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArrayData), vertexArrayData, GL_STATIC_DRAW);
@@ -73,6 +75,15 @@ GLuint program;
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
     Set_OpenGLViewDelegate(Tutorial2);
+}
+
+- (void)clearGLContext
+{
+    glDeleteBuffers(1, &vertexBuffer);
+    glDeleteVertexArrays(1, &vertexArrayObj);
+    glDeleteProgram(program);
+    
+    [super clearGLContext];
 }
 
 @end

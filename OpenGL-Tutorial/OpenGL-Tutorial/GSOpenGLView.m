@@ -11,15 +11,6 @@
 
 @implementation GSOpenGLView
 
-//- (void)prepareOpenGL
-//{
-//    glClearColor(0.67, 0.0, 0.5, 1.0);
-//    
-//    if ([self.delegate respondsToSelector:@selector(prepareRenderData)]) {
-//        [self.delegate prepareRenderData];
-//    }
-//}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.
