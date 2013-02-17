@@ -9,7 +9,7 @@
 #import <OpenGL/gl3.h>
 #import "kazmath/kazmath.h"
 #import "GSOpenGLView.h"
-#import "GSOpenGLShaderController.h"
+#import "GSShaderController.h"
 
 // globle value
 
@@ -32,7 +32,7 @@ GLuint vertexArrayObj;
 
 - (BOOL)prepareRenderData
 {
-    GSOpenGLShaderController *shaderController = [GSOpenGLShaderController sharedOpenGLShaderController];
+    GSShaderController *shaderController = [GSShaderController sharedShaderController];
     program = [shaderController programWithVertexShaderFile:@"tutorial2.vs" FragmentShaderFile:@"tutorial2.fs"];
     
     glGenVertexArrays(1, &vertexArrayObj);

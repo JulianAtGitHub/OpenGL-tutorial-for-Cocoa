@@ -9,7 +9,7 @@
 #import <OpenGL/gl3.h>
 #import "kazmath/kazmath.h"
 #import "GSOpenGLView.h"
-#import "GSOpenGLShaderController.h"
+#import "GSShaderController.h"
 
 // globle value
 static const kmVec3 vertexBufferData[] = {
@@ -73,7 +73,7 @@ GLuint vertexArrayObj;
     kmMat4Multiply(&MVP, &MVP, &model);
     
     // handle shaders
-    GSOpenGLShaderController *shaderController = [GSOpenGLShaderController sharedOpenGLShaderController];
+    GSShaderController *shaderController = [GSShaderController sharedShaderController];
     program = [shaderController programWithVertexShaderFile:@"tutorial4.vs" FragmentShaderFile:@"tutorial4.fs"];
     glUseProgram(program);
     GLint local_MVP = glGetUniformLocation(program, "MVP");

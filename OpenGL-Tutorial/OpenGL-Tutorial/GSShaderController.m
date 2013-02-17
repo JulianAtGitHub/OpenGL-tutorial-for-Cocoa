@@ -6,32 +6,21 @@
 //  Copyright (c) 2013 Juicer. All rights reserved.
 //
 
-#import "GSOpenGLShaderController.h"
+#import "GSShaderController.h"
 #import <OpenGL/gl3.h>
 #import <OpenGL/gl3ext.h>
 
-@implementation GSOpenGLShaderController
+@implementation GSShaderController
 
-+ (GSOpenGLShaderController *)sharedOpenGLShaderController
++ (GSShaderController *)sharedShaderController
 {
-    static GSOpenGLShaderController *instance = nil;
+    static GSShaderController *instance = nil;
     
     if (instance == nil) {
-        instance = [[GSOpenGLShaderController alloc] init];
+        instance = [[GSShaderController alloc] init];
     }
     
     return instance;
-}
-
-- (BOOL)existFile:(NSString *)filePath
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:filePath] == NO) {
-        NSLog(@"%@ not exist", filePath);
-        return NO;
-    }
-    
-    return YES;
 }
 
 - (GLuint)programWithVertexShaderFile:(NSString *)vsfilePath FragmentShaderFile:(NSString *)fsFilePath
@@ -39,8 +28,13 @@
     NSString *vsfileFullPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:vsfilePath];
     NSString *fsFileFullPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fsFilePath];
     
-    if ([self existFile:vsfileFullPath] == NO
-        || [self existFile:fsFileFullPath] == NO) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:vsfileFullPath] == NO) {
+        NSLog(@"%@ not exist", vsfileFullPath);
+        return 0;
+    }
+    if ([fileManager fileExistsAtPath:fsFileFullPath] == NO) {
+        NSLog(@"%@ not exist", fsFileFullPath);
         return 0;
     }
 

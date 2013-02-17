@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GSOpenGLShaderController : NSObject
+@interface GSShaderController : NSObject
 
-+ (GSOpenGLShaderController *)sharedOpenGLShaderController;
++ (GSShaderController *)sharedShaderController;
 
 - (GLuint)programWithVertexShader:(NSString *)vsContent FragmentShader:(NSString *)fsContent;
 - (GLuint)programWithVertexShaderFile:(NSString *)vsfilePath FragmentShaderFile:(NSString *)fsFilePath;
