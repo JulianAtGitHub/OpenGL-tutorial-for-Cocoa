@@ -31,6 +31,7 @@
 		2565775316B8949A0067EEDE /* Tutorial3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2565775216B8949A0067EEDE /* Tutorial3.m */; };
 		2565775816B895530067EEDE /* tutorial3.vs in Resources */ = {isa = PBXBuildFile; fileRef = 2565775416B8951C0067EEDE /* tutorial3.vs */; };
 		2565775916B895530067EEDE /* tutorial3.fs in Resources */ = {isa = PBXBuildFile; fileRef = 2565775616B895350067EEDE /* tutorial3.fs */; };
+		257960BA16D26FDC00F448C9 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
 		258B8B6816BA9F290050B7E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
 		258B8B6916BA9F290050B7E8 /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
 		258B8B6A16BA9F290050B7E8 /* GSShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSShaderController.m */; };
@@ -135,6 +136,8 @@
 		2565775216B8949A0067EEDE /* Tutorial3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial3.m; sourceTree = "<group>"; };
 		2565775416B8951C0067EEDE /* tutorial3.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial3.vs; sourceTree = "<group>"; };
 		2565775616B895350067EEDE /* tutorial3.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial3.fs; sourceTree = "<group>"; };
+		257960B716D267E700F448C9 /* GSInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSInputController.h; sourceTree = "<group>"; };
+		257960B816D267E700F448C9 /* GSInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSInputController.m; sourceTree = "<group>"; };
 		258B8B8516BA9F290050B7E8 /* Tutorial4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		258B8B8716BA9F7F0050B7E8 /* Tutorial4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial4.m; sourceTree = "<group>"; };
 		258B8B8916BAA0060050B7E8 /* tutorial4.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial4.vs; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				62FDCD9316B7CD3100FA867D /* GSShaderController.m */,
 				25F6AA7616D1240500CC96DF /* GSTextureController.h */,
 				25F6AA7716D1240500CC96DF /* GSTextureController.m */,
+				257960B716D267E700F448C9 /* GSInputController.h */,
+				257960B816D267E700F448C9 /* GSInputController.m */,
 				25F6AA7916D12E9A00CC96DF /* GSOpenGLInfoHelper.h */,
 				25F6AA7A16D12E9A00CC96DF /* GSOpenGLInfoHelper.m */,
 				62FDCD9B16B7CEF300FA867D /* kazmath */,
@@ -632,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				257960BA16D26FDC00F448C9 /* GSInputController.m in Sources */,
 				25F6AA4C16D1142000CC96DF /* main.m in Sources */,
 				25F6AA4D16D1142000CC96DF /* GSAppDelegate.m in Sources */,
 				25F6AA4E16D1142000CC96DF /* GSShaderController.m in Sources */,
