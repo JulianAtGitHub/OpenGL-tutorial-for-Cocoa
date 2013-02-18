@@ -39,15 +39,19 @@ unsigned long getNextPOT(unsigned long x)
 {
     self = [super init];
     if (self) {
-        //GSOpenGLInfoHelper *openGLInfoHelp = [GSOpenGLInfoHelper sharedOpenGLInfoHelper];
-        //_supportsNPOT = [openGLInfoHelp checkForGLExtension:@"GL_ARB_texture_non_power_of_two"];
-        _supportsNPOT = YES;
+        GSOpenGLInfoHelper *openGLInfoHelp = [GSOpenGLInfoHelper sharedOpenGLInfoHelper];
+        
+        if (openGLInfoHelp.openglVersion < 2.0) {
+            _supportsNPOT = [openGLInfoHelp checkForGLExtension:@"GL_ARB_texture_non_power_of_two"];
+        } else {
+            _supportsNPOT = YES;
+        }
     }
     
     return self;
 }
 
-- (GLuint)textureWithFileName:(NSString *)fileName
+- (GLuint)textureWithFileName:(NSString *)fileName useMipmap:(BOOL)isMapmap
 {
     NSString *fullPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName];
     
@@ -88,15 +92,6 @@ unsigned long getNextPOT(unsigned long x)
 		return 0;
 	}
     
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    void *data = malloc(textureHeight * textureWidth * 4);
-    CGContextRef context = CGBitmapContextCreate(data, textureWidth, textureHeight, 8, 4 * textureWidth, colorSpace, info | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    
-    CGContextClearRect(context, CGRectMake(0, 0, textureWidth, textureHeight));
-	CGContextTranslateCTM(context, 0, textureHeight - imageSize.height);
-	CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(cgImage), CGImageGetHeight(cgImage)), cgImage);
-    
     //glPixelStorei(GL_UNPACK_ALIGNMENT,4);
     GLuint texObj;
     glGenTextures(1, &texObj);
@@ -105,15 +100,61 @@ unsigned long getNextPOT(unsigned long x)
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texObj);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)textureWidth, (GLsizei)textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    GLint level = 0;
+    NSUInteger width = textureWidth;
+    NSUInteger height = textureHeight;
+    NSUInteger widthImage = imageSize.width;
+    NSUInteger heightImage = imageSize.height;
+    do {
+        if (level > 0) {
+            width /= 2;
+            height /= 2;
+            
+            widthImage /= 2;
+            if (widthImage == 0) {
+                widthImage = 1;
+            }
+            
+            heightImage /= 2;
+            if (heightImage == 0) {
+                heightImage = 1;
+            }
+        }
+        
+        void *data = malloc(height * width * 4);
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef context = CGBitmapContextCreate(data, width, height, 8, 4 * width, colorSpace, info | kCGBitmapByteOrder32Big);
+        CGColorSpaceRelease(colorSpace);
+        
+        CGContextClearRect(context, CGRectMake(0, 0, width, height));
+        CGContextTranslateCTM(context, 0, height - heightImage);
+        CGContextDrawImage(context, CGRectMake(0, 0, widthImage, heightImage), cgImage);
+        
+        glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        
+        CGContextRelease(context);
+        free(data);
+        
+        if (width == 1 && height == 1) {
+            break;
+        }
+        level++;
+        
+    } while (isMapmap);
     
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    if (isMapmap == NO) {
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    } else {
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
     
     glDisable(GL_TEXTURE_2D);
     
-    CGContextRelease(context);
-    free(data);
+    
     
     return texObj;
 }

@@ -34,8 +34,6 @@
     NSOpenGLView *view = [[GSOpenGLView alloc] initWithFrame:self.window.frame pixelFormat:pixelFormat];
     
     [self.window setContentView:view];
-    
-    //GSOpenGLInfoHelper *openGLInfoHelp = [GSOpenGLInfoHelper sharedOpenGLInfoHelper];
 }
 
 @end

@@ -14,6 +14,6 @@
 
 + (GSTextureController *)sharedTextureController;
 
-- (GLuint)textureWithFileName:(NSString *)fileName;
+- (GLuint)textureWithFileName:(NSString *)fileName useMipmap:(BOOL)isMapmap;
 
 @end

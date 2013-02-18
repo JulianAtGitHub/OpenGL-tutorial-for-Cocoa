@@ -10,6 +10,9 @@
 
 @interface GSOpenGLInfoHelper : NSObject
 
+@property (nonatomic, readonly) float openglVersion;
+@property (nonatomic, readonly) NSString *openglExtensions;
+
 + (GSOpenGLInfoHelper *)sharedOpenGLInfoHelper;
 
 - (BOOL) checkForGLExtension:(NSString *)searchName;

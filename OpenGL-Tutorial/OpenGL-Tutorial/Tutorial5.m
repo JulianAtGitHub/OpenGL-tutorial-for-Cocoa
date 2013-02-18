@@ -165,7 +165,7 @@ GLuint vertexArrayObj;
     kmMat4Multiply(&MVP, &MVP, &model);
     
     GSTextureController *textureController = [GSTextureController sharedTextureController];
-    texture = [textureController textureWithFileName:@"uvtemplate.png"];
+    texture = [textureController textureWithFileName:@"uvtemplate.png" useMipmap:YES];
     
     // handle shaders
     GSShaderController *shaderController = [GSShaderController sharedShaderController];
@@ -187,10 +187,6 @@ GLuint vertexArrayObj;
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
     
-//    glGenBuffers(1, &colorBuffer);
-//    glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(colorBufferData), colorBufferData, GL_STATIC_DRAW);
-    
     glGenBuffers(1, &uvBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);
@@ -210,10 +206,6 @@ GLuint vertexArrayObj;
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
-    
-    //glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-    //glEnableVertexAttribArray(1);
-    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
     
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glEnableVertexAttribArray(1);
