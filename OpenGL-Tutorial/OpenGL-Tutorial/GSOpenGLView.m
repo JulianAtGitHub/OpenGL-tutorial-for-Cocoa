@@ -63,8 +63,9 @@
     [super keyDown:theEvent];
     
     NSString *characters = [theEvent characters];
-    
     [[GSInputController sharedInputController] keysDown:characters];
+    
+    NSLog(@"keyDown: %@", characters);
 }
 
 - (void)keyUp:(NSEvent *)theEvent
@@ -72,8 +73,71 @@
     [super keyUp:theEvent];
     
     NSString *characters = [theEvent characters];
-    
     [[GSInputController sharedInputController] keysUp:characters];
+    
+    NSLog(@"keyUp: %@", characters);
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    [super mouseDown:theEvent];
+    
+    NSPoint location = [theEvent locationInWindow];
+    [[GSInputController sharedInputController] mouseLeftDown:location];
+    
+    NSLog(@"mouseDown: location:%f %f", location.x, location.y);
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    [super mouseUp:theEvent];
+    
+    NSPoint location = [theEvent locationInWindow];
+    [[GSInputController sharedInputController] mouseLeftUp:location];
+    
+    NSLog(@"mouseUp: location:%f %f", location.x, location.y);
+}
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    [super rightMouseDown:theEvent];
+    
+    NSPoint location = [theEvent locationInWindow];
+    [[GSInputController sharedInputController] mouseRightDown:location];
+    
+    NSLog(@"rightMouseDown: location:%f %f", location.x, location.y);
+}
+
+- (void)rightMouseUp:(NSEvent *)theEvent
+{
+    [super rightMouseUp:theEvent];
+    
+    NSPoint location = [theEvent locationInWindow];
+    [[GSInputController sharedInputController] mouseRightUp:location];
+    
+    NSLog(@"rightMouseUp: location:%f %f", location.x, location.y);
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    [super mouseDragged:theEvent];
+    
+    CGFloat x = [theEvent deltaX];
+    CGFloat y = [theEvent deltaY];
+    [[GSInputController sharedInputController] mouseLeftDragWithX:x andY:y];
+    
+    NSLog(@"mouseDragged: x:%f y:%f", x, y);
+}
+
+- (void)rightMouseDragged:(NSEvent *)theEvent
+{
+    [super rightMouseDragged:theEvent];
+    
+    CGFloat x = [theEvent deltaX];
+    CGFloat y = [theEvent deltaY];
+    [[GSInputController sharedInputController] mouseRightDragWithX:x andY:y];
+    
+    NSLog(@"rightMouseDragged: x:%f y:%f", x, y);
 }
 
 @end

@@ -80,7 +80,60 @@
             }
         }
     }
+}
 
+- (void)mouseLeftDown:(NSPoint)locationInWindow
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseLeftDown:)]) {
+            [obj mouseLeftDown:locationInWindow];
+        }
+    }
+}
+
+- (void)mouseLeftUp:(NSPoint)locationInWindow
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseLeftUp:)]) {
+            [obj mouseLeftUp:locationInWindow];
+        }
+    }
+}
+
+- (void)mouseRightDown:(NSPoint)locationInWindow
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseRightDown:)]) {
+            [obj mouseRightDown:locationInWindow];
+        }
+    }
+}
+
+- (void)mouseRightUp:(NSPoint)locationInWindow
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseRightUp:)]) {
+            [obj mouseRightUp:locationInWindow];
+        }
+    }
+}
+
+- (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseLeftDragWithX:andY:)]) {
+            [obj mouseLeftDragWithX:x andY:y];
+        }
+    }
+}
+
+- (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseRightDragWithX:andY:)]) {
+            [obj mouseRightDragWithX:x andY:y];
+        }
+    }
 }
 
 @end

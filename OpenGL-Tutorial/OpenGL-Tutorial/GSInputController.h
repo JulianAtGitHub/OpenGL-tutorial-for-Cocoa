@@ -13,6 +13,12 @@
 @optional
 - (void)keyDown:(unichar)key;
 - (void)keyUp:(unichar)key;
+- (void)mouseLeftDown:(NSPoint)locationInWindow;
+- (void)mouseLeftUp:(NSPoint)locationInWindow;
+- (void)mouseRightDown:(NSPoint)locationInWindow;
+- (void)mouseRightUp:(NSPoint)locationInWindow;
+- (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
+- (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
 
 @end
 
@@ -25,5 +31,12 @@
 
 - (void)keysDown:(NSString *)keys;
 - (void)keysUp:(NSString *)keys;
+
+- (void)mouseLeftDown:(NSPoint)locationInWindow;
+- (void)mouseLeftUp:(NSPoint)locationInWindow;
+- (void)mouseRightDown:(NSPoint)locationInWindow;
+- (void)mouseRightUp:(NSPoint)locationInWindow;
+- (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
+- (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
 
 @end
