@@ -19,6 +19,7 @@
 - (void)mouseRightUp:(NSPoint)locationInWindow;
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
+- (void)mouseScrollWithX:(CGFloat)x andY:(CGFloat)y;
 
 @end
 
@@ -38,5 +39,6 @@
 - (void)mouseRightUp:(NSPoint)locationInWindow;
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
+- (void)mouseScrollWithX:(CGFloat)x andY:(CGFloat)y;
 
 @end

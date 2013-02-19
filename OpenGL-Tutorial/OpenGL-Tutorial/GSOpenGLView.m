@@ -152,4 +152,15 @@
     NSLog(@"rightMouseDragged: x:%f y:%f", x, y);
 }
 
+- (void)scrollWheel:(NSEvent *)theEvent
+{
+    [super scrollWheel:theEvent];
+    
+    CGFloat x = [theEvent scrollingDeltaX];
+    CGFloat y = [theEvent scrollingDeltaY];
+    [[GSInputController sharedInputController] mouseScrollWithX:x andY:y];
+    
+    NSLog(@"scrollWheel: x:%f y:%f", x, y);
+}
+
 @end

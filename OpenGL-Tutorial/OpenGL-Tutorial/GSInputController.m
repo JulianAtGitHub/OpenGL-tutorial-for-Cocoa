@@ -136,4 +136,13 @@
     }
 }
 
+- (void)mouseScrollWithX:(CGFloat)x andY:(CGFloat)y
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseScrollWithX:andY:)]) {
+            [obj mouseScrollWithX:x andY:y];
+        }
+    }
+}
+
 @end
