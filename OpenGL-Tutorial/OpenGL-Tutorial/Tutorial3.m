@@ -72,6 +72,11 @@ GLuint vertexArrayObj;
     return YES;
 }
 
+- (void)update:(NSTimeInterval)timeInterval
+{
+    
+}
+
 - (void)render;
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -12,6 +12,18 @@
 
 @implementation GSOpenGLView
 
+- (void)visit:(NSTimer*)theTimer
+{
+    if ([theTimer isEqual:_timer] == NO) {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(update:)]) {
+        [self.delegate update:[theTimer timeInterval]];
+        [self drawRect:[self bounds]];
+    }
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.

@@ -83,6 +83,10 @@
 		25F6AA7516D11C3C00CC96DF /* uvtemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 25F6AA7416D11C3C00CC96DF /* uvtemplate.png */; };
 		25F6AA7816D1240500CC96DF /* GSTextureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F6AA7716D1240500CC96DF /* GSTextureController.m */; };
 		25F6AA7B16D12E9A00CC96DF /* GSOpenGLInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F6AA7A16D12E9A00CC96DF /* GSOpenGLInfoHelper.m */; };
+		628795CC16D3819E00B91622 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
+		628795CD16D381A700B91622 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
+		628795CE16D381AE00B91622 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
+		628795CF16D381B600B91622 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
 		62FDCD7216B7C8B000FA867D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FDCD7116B7C8B000FA867D /* Cocoa.framework */; };
 		62FDCD7C16B7C8B000FA867D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD7A16B7C8B000FA867D /* InfoPlist.strings */; };
 		62FDCD7E16B7C8B000FA867D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
@@ -258,6 +262,46 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		628795D016D3835B00B91622 /* Tutorial1-Open-a-window */ = {
+			isa = PBXGroup;
+			children = (
+				62FDCD9616B7CD3100FA867D /* Tutorial1.m */,
+			);
+			name = "Tutorial1-Open-a-window";
+			sourceTree = "<group>";
+		};
+		628795D116D3838300B91622 /* Tutorial2-The-first-triangle */ = {
+			isa = PBXGroup;
+			children = (
+				62FDCDE316B7D0C500FA867D /* Tutorial2.m */,
+			);
+			name = "Tutorial2-The-first-triangle";
+			sourceTree = "<group>";
+		};
+		628795D216D383B700B91622 /* Tutorial3-Matrices */ = {
+			isa = PBXGroup;
+			children = (
+				2565775216B8949A0067EEDE /* Tutorial3.m */,
+			);
+			name = "Tutorial3-Matrices";
+			sourceTree = "<group>";
+		};
+		628795D316D383D400B91622 /* Tutorial4-Color-cube */ = {
+			isa = PBXGroup;
+			children = (
+				258B8B8716BA9F7F0050B7E8 /* Tutorial4.m */,
+			);
+			name = "Tutorial4-Color-cube";
+			sourceTree = "<group>";
+		};
+		628795D416D383F200B91622 /* Tutorial5-Texture-cube */ = {
+			isa = PBXGroup;
+			children = (
+				25F6AA6B16D114C100CC96DF /* Tutorial5.m */,
+			);
+			name = "Tutorial5-Texture-cube";
+			sourceTree = "<group>";
+		};
 		62FDCD6516B7C8B000FA867D = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +360,7 @@
 				257960B716D267E700F448C9 /* GSInputController.h */,
 				257960B816D267E700F448C9 /* GSInputController.m */,
 				62FDCD9B16B7CEF300FA867D /* kazmath */,
-				62FDCD9A16B7CDB000FA867D /* Tutorial */,
+				62FDCD9A16B7CDB000FA867D /* BasicTutorial */,
 				62FDCDE516B7D0D600FA867D /* Shader */,
 				25F6AA7316D11C3C00CC96DF /* Resources */,
 				62FDCD7816B7C8B000FA867D /* Supporting Files */,
@@ -336,16 +380,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		62FDCD9A16B7CDB000FA867D /* Tutorial */ = {
+		62FDCD9A16B7CDB000FA867D /* BasicTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				62FDCD9616B7CD3100FA867D /* Tutorial1.m */,
-				62FDCDE316B7D0C500FA867D /* Tutorial2.m */,
-				2565775216B8949A0067EEDE /* Tutorial3.m */,
-				258B8B8716BA9F7F0050B7E8 /* Tutorial4.m */,
-				25F6AA6B16D114C100CC96DF /* Tutorial5.m */,
+				628795D416D383F200B91622 /* Tutorial5-Texture-cube */,
+				628795D316D383D400B91622 /* Tutorial4-Color-cube */,
+				628795D216D383B700B91622 /* Tutorial3-Matrices */,
+				628795D116D3838300B91622 /* Tutorial2-The-first-triangle */,
+				628795D016D3835B00B91622 /* Tutorial1-Open-a-window */,
 			);
-			name = Tutorial;
+			name = BasicTutorial;
 			sourceTree = "<group>";
 		};
 		62FDCD9B16B7CEF300FA867D /* kazmath */ = {
@@ -589,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628795CE16D381AE00B91622 /* GSInputController.m in Sources */,
 				2565773316B893090067EEDE /* main.m in Sources */,
 				2565773416B893090067EEDE /* GSAppDelegate.m in Sources */,
 				2565773516B893090067EEDE /* GSShaderController.m in Sources */,
@@ -613,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628795CF16D381B600B91622 /* GSInputController.m in Sources */,
 				258B8B6816BA9F290050B7E8 /* main.m in Sources */,
 				258B8B6916BA9F290050B7E8 /* GSAppDelegate.m in Sources */,
 				258B8B6A16BA9F290050B7E8 /* GSShaderController.m in Sources */,
@@ -664,6 +710,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628795CC16D3819E00B91622 /* GSInputController.m in Sources */,
 				62FDCD7E16B7C8B000FA867D /* main.m in Sources */,
 				62FDCD8516B7C8B000FA867D /* GSAppDelegate.m in Sources */,
 				62FDCD9716B7CD3100FA867D /* GSShaderController.m in Sources */,
@@ -688,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628795CD16D381A700B91622 /* GSInputController.m in Sources */,
 				62FDCDC416B7D02D00FA867D /* main.m in Sources */,
 				62FDCDC516B7D02D00FA867D /* GSAppDelegate.m in Sources */,
 				62FDCDC616B7D02D00FA867D /* GSShaderController.m in Sources */,

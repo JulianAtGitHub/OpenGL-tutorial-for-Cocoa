@@ -10,9 +10,13 @@
 
 @protocol GSOpenGLViewDelegate;
 
-@interface GSOpenGLView : NSOpenGLView
+@interface GSOpenGLView : NSOpenGLView {
+    NSTimer *_timer;
+}
 
 @property (nonatomic, strong) id<GSOpenGLViewDelegate> delegate;
+
+- (void)visit:(NSTimer*)theTimer;
 
 @end
 
@@ -20,7 +24,9 @@
 
 @required
 - (BOOL)prepareRenderData;
+- (void)update:(NSTimeInterval)timeInterval;
 - (void)render;
+
 
 @end
 
@@ -30,9 +36,10 @@
     if ([self.delegate respondsToSelector:@selector(prepareRenderData)]) { \
         [self.delegate prepareRenderData]; \
     } \
-    NSTimer *timer = [NSTimer timerWithTimeInterval:(1.0/60.0) \
-                                             target:self \
-                                           selector:@selector(drawRect:) \
-                                           userInfo:nil \
-                                            repeats:YES]; \
-    [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSDefaultRunLoopMode];
+    _timer = [NSTimer timerWithTimeInterval:(1.0/60.0) \
+                                     target:self \
+                                   selector:@selector(visit:) \
+                                   userInfo:nil \
+                                    repeats:YES]; \
+    [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSDefaultRunLoopMode];
+
