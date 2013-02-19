@@ -1,8 +1,8 @@
 //
-//  Tutorial5.m
+//  Tutorial6.m
 //  OpenGL-Tutorial
 //
-//  Created by 朱 巍 on 17/2/13.
+//  Created by 朱 巍 on 19/2/13.
 //  Copyright (c) 2013 Juicer. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "GSOpenGLView.h"
 #import "GSShaderController.h"
 #import "GSTextureController.h"
+#import "GSInputController.h"
 
 // globle value
 
@@ -131,9 +132,14 @@ static const kmVec2 uvBufferData[] = {
     {0.667979f, 0.335851f}
 };
 
-kmVec3 eye = {4.0, 3.0, 3.0};
+float moveSpeed = 3.0f;
+float rotateSpeed = 0.006f;
+double thetaX = 0.0;
+double thetaY = 0.0;
+kmVec3 eye = {0.0, 0.0, 6.0};
 kmVec3 center = {0.0, 0.0, 0.0};
 kmVec3 up = {0.0, 1.0, 0.0};
+
 
 GLuint vertexBuffer;
 //GLuint colorBuffer;
@@ -143,37 +149,24 @@ GLuint program;
 GLuint vertexArrayObj;
 
 // class Tutorial4
-@interface Tutorial5 : NSObject <GSOpenGLViewDelegate>
+@interface Tutorial6 : NSObject <GSOpenGLViewDelegate, GSInputDelegate>
 
 @end
 
-@implementation Tutorial5
+@implementation Tutorial6
 
 - (BOOL)prepareRenderData
 {
-    // matrix with model, view, projection
-    kmMat4 projection;
-    kmMat4 view;
-    kmMat4 model;
-    kmMat4 MVP;
-    
-    kmMat4PerspectiveProjection(&projection, 45.0f, 4.0f/3.0f, 0.1f, 100.0f);
-    kmMat4LookAt(&view, &eye, &center, &up);
-    kmMat4Identity(&model);
-    
-    kmMat4Multiply(&MVP, &projection, &view);
-    kmMat4Multiply(&MVP, &MVP, &model);
+    [[GSInputController sharedInputController] addKeyEventDelegate:self];
     
     GSTextureController *textureController = [GSTextureController sharedTextureController];
     texture = [textureController textureWithFileName:@"uvtemplate.png" useMipmap:YES];
     
     // handle shaders
     GSShaderController *shaderController = [GSShaderController sharedShaderController];
-    program = [shaderController programWithVertexShaderFile:@"tutorial5.vs" FragmentShaderFile:@"tutorial5.fs"];
-    glUseProgram(program);
+    program = [shaderController programWithVertexShaderFile:@"tutorial6.vs" FragmentShaderFile:@"tutorial6.fs"];
     
-    GLint local_MVP = glGetUniformLocation(program, "MVP");
-    glUniformMatrix4fv(local_MVP, 1, GL_FALSE, (GLfloat *)&MVP);
+    glUseProgram(program);
     
     GLint local_image0 = glGetUniformLocation(program, "image0");
     glActiveTexture(GL_TEXTURE0);
@@ -218,9 +211,81 @@ GLuint vertexArrayObj;
     return YES;
 }
 
+- (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y
+{
+    if (y == 0.0) {
+        return;
+    }
+    
+    kmVec3 lookAt;
+    kmVec3Subtract(&lookAt, &center, &eye);
+    kmScalar distance = kmVec3Length(&lookAt);
+    
+    thetaX += -x * rotateSpeed;
+    thetaY += y * rotateSpeed;
+    
+    if (thetaX < -M_PI_4) {
+        thetaX = -M_PI_4;
+    }
+    
+    if (thetaX > M_PI_4) {
+        thetaX = M_PI_4;
+    }
+    
+    if (thetaY < -M_PI_4) {
+        thetaY = -M_PI_4;
+    }
+    
+    if (thetaY > M_PI_4) {
+        thetaY = M_PI_4;
+    }
+
+    float deltaX = distance * sin(thetaX);
+    float deltaY = distance * sin(thetaY);
+    float deltaZ = sqrtf(kmSQR(distance) - kmSQR(deltaX) - kmSQR(deltaY));
+    center.x = eye.x - deltaX;
+    center.y = eye.y - deltaY;
+    center.z = eye.z - deltaZ;
+}
+
 - (void)update:(NSTimeInterval)timeInterval
 {
+    GSInputController *inputController = [GSInputController sharedInputController];
+    if ([inputController keyIsPressed:NSLeftArrowFunctionKey]) {
+        float delta = moveSpeed * timeInterval;
+        eye.x -= delta;
+        center.x -= delta;
+    } else if ([inputController keyIsPressed:NSRightArrowFunctionKey]) {
+        float delta = moveSpeed * timeInterval;
+        eye.x += delta;
+        center.x += delta;
+    } else if ([inputController keyIsPressed:NSUpArrowFunctionKey]) {
+        float delta = moveSpeed * timeInterval;
+        eye.z -= delta;
+        center.z -= delta;
+    } else if ([inputController keyIsPressed:NSDownArrowFunctionKey]) {
+        float delta = moveSpeed * timeInterval;
+        eye.z += delta;
+        center.z += delta;
+    }
     
+    // matrix with model, view, projection
+    kmMat4 projection;
+    kmMat4 view;
+    kmMat4 model;
+    kmMat4 MVP;
+    
+    kmMat4PerspectiveProjection(&projection, 45.0f, 4.0f/3.0f, 0.1f, 100.0f);
+    kmMat4LookAt(&view, &eye, &center, &up);
+    kmMat4Identity(&model);
+    
+    kmMat4Multiply(&MVP, &projection, &view);
+    kmMat4Multiply(&MVP, &MVP, &model);
+    
+    glUseProgram(program);
+    
+    GLint local_MVP = glGetUniformLocation(program, "MVP");
+    glUniformMatrix4fv(local_MVP, 1, GL_FALSE, (GLfloat *)&MVP);
 }
 
 - (void)render;
@@ -246,7 +311,7 @@ GLuint vertexArrayObj;
     glEnable(GL_CULL_FACE);
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
-    Set_OpenGLViewDelegate(Tutorial5);
+    Set_OpenGLViewDelegate(Tutorial6);
 }
 
 - (void)clearGLContext

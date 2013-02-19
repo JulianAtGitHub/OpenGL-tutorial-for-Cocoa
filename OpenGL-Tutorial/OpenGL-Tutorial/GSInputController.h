@@ -32,6 +32,7 @@
 
 - (void)keysDown:(NSString *)keys;
 - (void)keysUp:(NSString *)keys;
+- (BOOL)keyIsPressed:(unichar)key;
 
 - (void)mouseLeftDown:(NSPoint)locationInWindow;
 - (void)mouseLeftUp:(NSPoint)locationInWindow;

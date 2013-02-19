@@ -10,6 +10,7 @@
 
 @interface GSInputController() {
     NSMutableArray *_objsForKeyEvent;
+    NSMutableArray *_keyPressed;
 }
 
 @end
@@ -32,6 +33,10 @@
     self = [super init];
     if (self) {
         _objsForKeyEvent = [NSMutableArray array];
+        _keyPressed = [NSMutableArray array];
+        for (NSUInteger i = 0; i < USHRT_MAX; ++i) {
+            [_keyPressed addObject:[NSNumber numberWithBool:NO]];
+        }
     }
     
     return self;
@@ -62,6 +67,7 @@
 {
     for (NSUInteger i = 0; i < [keys length]; ++i) {
         unichar character = [keys characterAtIndex:i];
+        [_keyPressed replaceObjectAtIndex:character withObject:[NSNumber numberWithBool:YES]];
         for (id<GSInputDelegate> obj in _objsForKeyEvent) {
             if ([obj respondsToSelector:@selector(keyDown:)]) {
                 [obj keyDown:character];
@@ -74,12 +80,18 @@
 {
     for (NSUInteger i = 0; i < [keys length]; ++i) {
         unichar character = [keys characterAtIndex:i];
+        [_keyPressed replaceObjectAtIndex:character withObject:[NSNumber numberWithBool:NO]];
         for (id<GSInputDelegate> obj in _objsForKeyEvent) {
             if ([obj respondsToSelector:@selector(keyUp:)]) {
                 [obj keyUp:character];
             }
         }
     }
+}
+
+- (BOOL)keyIsPressed:(unichar)key
+{
+    return [[_keyPressed objectAtIndex:key] boolValue];
 }
 
 - (void)mouseLeftDown:(NSPoint)locationInWindow
