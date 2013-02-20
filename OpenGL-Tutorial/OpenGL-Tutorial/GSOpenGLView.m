@@ -12,6 +12,26 @@
 
 @implementation GSOpenGLView
 
+- (id)initWithFrame:(NSRect)frameRect pixelFormat:(NSOpenGLPixelFormat*)format
+{
+    self = [super initWithFrame:frameRect pixelFormat:format];
+    
+    if (self) {
+        NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:[self bounds]
+                                                                    options: (NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow )
+                                                                      owner:self
+                                                                   userInfo:nil];
+        [self addTrackingArea:trackingArea];
+    }
+
+    return self;
+}
+
+//- (void)viewDidMoveToWindow
+//{
+//    [self addTrackingRect:[self bounds] owner:self userData:nil assumeInside:NO];
+//}
+
 - (void)visit:(NSTimer*)theTimer
 {
     if ([theTimer isEqual:_timer] == NO) {
@@ -130,6 +150,17 @@
     NSLog(@"rightMouseUp: location:%f %f", location.x, location.y);
 }
 
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    [super mouseMoved:theEvent];
+    
+    CGFloat x = [theEvent deltaX];
+    CGFloat y = [theEvent deltaY];
+    [[GSInputController sharedInputController] mouseMoveWithX:x andY:y];
+    
+    NSLog(@"mouseMoved: x:%f y:%f", x, y);
+}
+
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     [super mouseDragged:theEvent];
@@ -161,6 +192,27 @@
     [[GSInputController sharedInputController] mouseScrollWithX:x andY:y];
     
     NSLog(@"scrollWheel: x:%f y:%f", x, y);
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+    [super mouseEntered:theEvent];
+    
+    NSLog(@"mouseEntered");
+}
+
+- (void)mouseExited:(NSEvent *)theEvent
+{
+    [super mouseExited:theEvent];
+    
+    NSLog(@"mouseExited");
+}
+
+- (void)cursorUpdate:(NSEvent *)theEvent
+{
+    [super cursorUpdate:theEvent];
+    
+    NSLog(@"cursorUpdate");
 }
 
 @end

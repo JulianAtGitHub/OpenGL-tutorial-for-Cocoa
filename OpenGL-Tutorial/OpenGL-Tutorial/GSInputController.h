@@ -17,6 +17,7 @@
 - (void)mouseLeftUp:(NSPoint)locationInWindow;
 - (void)mouseRightDown:(NSPoint)locationInWindow;
 - (void)mouseRightUp:(NSPoint)locationInWindow;
+- (void)mouseMoveWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseScrollWithX:(CGFloat)x andY:(CGFloat)y;
@@ -38,6 +39,7 @@
 - (void)mouseLeftUp:(NSPoint)locationInWindow;
 - (void)mouseRightDown:(NSPoint)locationInWindow;
 - (void)mouseRightUp:(NSPoint)locationInWindow;
+- (void)mouseMoveWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseRightDragWithX:(CGFloat)x andY:(CGFloat)y;
 - (void)mouseScrollWithX:(CGFloat)x andY:(CGFloat)y;

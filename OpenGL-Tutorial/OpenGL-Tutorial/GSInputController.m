@@ -130,6 +130,15 @@
     }
 }
 
+- (void)mouseMoveWithX:(CGFloat)x andY:(CGFloat)y
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(mouseMoveWithX:andY:)]) {
+            [obj mouseMoveWithX:x andY:y];
+        }
+    }
+}
+
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y
 {
     for (id<GSInputDelegate> obj in _objsForKeyEvent) {

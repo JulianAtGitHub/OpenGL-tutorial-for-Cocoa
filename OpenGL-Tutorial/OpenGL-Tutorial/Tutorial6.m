@@ -133,7 +133,7 @@ static const kmVec2 uvBufferData[] = {
 };
 
 float moveSpeed = 3.0f;
-float rotateSpeed = 0.006f;
+float rotateSpeed = 0.01f;
 double thetaX = 0.0;
 double thetaY = 0.0;
 kmVec3 eye = {0.0, 0.0, 6.0};
