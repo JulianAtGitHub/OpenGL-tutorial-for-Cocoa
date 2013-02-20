@@ -32,6 +32,36 @@
 		2565775816B895530067EEDE /* tutorial3.vs in Resources */ = {isa = PBXBuildFile; fileRef = 2565775416B8951C0067EEDE /* tutorial3.vs */; };
 		2565775916B895530067EEDE /* tutorial3.fs in Resources */ = {isa = PBXBuildFile; fileRef = 2565775616B895350067EEDE /* tutorial3.fs */; };
 		257960BA16D26FDC00F448C9 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
+		2588BBA416D4FC1E00E34208 /* GSInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257960B816D267E700F448C9 /* GSInputController.m */; };
+		2588BBA516D4FC1E00E34208 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
+		2588BBA616D4FC1E00E34208 /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
+		2588BBA716D4FC1E00E34208 /* GSShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSShaderController.m */; };
+		2588BBA816D4FC1E00E34208 /* GSOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9516B7CD3100FA867D /* GSOpenGLView.m */; };
+		2588BBA916D4FC1E00E34208 /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9C16B7CEF300FA867D /* aabb.c */; };
+		2588BBAA16D4FC1E00E34208 /* mat4stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9F16B7CEF300FA867D /* mat4stack.c */; };
+		2588BBAB16D4FC1E00E34208 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA116B7CEF300FA867D /* matrix.c */; };
+		2588BBAC16D4FC1E00E34208 /* mat3.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA416B7CEF300FA867D /* mat3.c */; };
+		2588BBAD16D4FC1E00E34208 /* mat4.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA616B7CEF300FA867D /* mat4.c */; };
+		2588BBAE16D4FC1E00E34208 /* plane.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDA816B7CEF300FA867D /* plane.c */; };
+		2588BBAF16D4FC1E00E34208 /* quaternion.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAA16B7CEF300FA867D /* quaternion.c */; };
+		2588BBB016D4FC1E00E34208 /* ray2.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAC16B7CEF300FA867D /* ray2.c */; };
+		2588BBB116D4FC1E00E34208 /* utility.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDAE16B7CEF300FA867D /* utility.c */; };
+		2588BBB216D4FC1E00E34208 /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB016B7CEF300FA867D /* vec2.c */; };
+		2588BBB316D4FC1E00E34208 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB216B7CEF300FA867D /* vec3.c */; };
+		2588BBB416D4FC1E00E34208 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCDB416B7CEF300FA867D /* vec4.c */; };
+		2588BBB616D4FC1E00E34208 /* GSTextureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F6AA7716D1240500CC96DF /* GSTextureController.m */; };
+		2588BBB716D4FC1E00E34208 /* GSOpenGLInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F6AA7A16D12E9A00CC96DF /* GSOpenGLInfoHelper.m */; };
+		2588BBB916D4FC1E00E34208 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FDCD8E16B7CCED00FA867D /* OpenGL.framework */; };
+		2588BBBA16D4FC1E00E34208 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FDCD7116B7C8B000FA867D /* Cocoa.framework */; };
+		2588BBBE16D4FC1E00E34208 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD7A16B7C8B000FA867D /* InfoPlist.strings */; };
+		2588BBBF16D4FC1E00E34208 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD8016B7C8B000FA867D /* Credits.rtf */; };
+		2588BBC016D4FC1E00E34208 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62FDCD8616B7C8B000FA867D /* MainMenu.xib */; };
+		2588BBC116D4FC1E00E34208 /* uvtemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 25F6AA7416D11C3C00CC96DF /* uvtemplate.png */; };
+		2588BBC916D4FCD500E34208 /* tutorial7.vs in Resources */ = {isa = PBXBuildFile; fileRef = 2588BBC716D4FCA700E34208 /* tutorial7.vs */; };
+		2588BBCA16D4FCD500E34208 /* tutorial7.fs in Resources */ = {isa = PBXBuildFile; fileRef = 2588BBC816D4FCB800E34208 /* tutorial7.fs */; };
+		2588BBCC16D4FD3300E34208 /* Tutorial7.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588BBCB16D4FD3300E34208 /* Tutorial7.m */; };
+		2588BBD016D4FDD800E34208 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2588BBCE16D4FDD800E34208 /* cube.obj */; };
+		2588BBD216D5188700E34208 /* cube_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 2588BBD116D5188700E34208 /* cube_texture.png */; };
 		258B8B6816BA9F290050B7E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
 		258B8B6916BA9F290050B7E8 /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
 		258B8B6A16BA9F290050B7E8 /* GSShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSShaderController.m */; };
@@ -170,6 +200,12 @@
 		2565775616B895350067EEDE /* tutorial3.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial3.fs; sourceTree = "<group>"; };
 		257960B716D267E700F448C9 /* GSInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSInputController.h; sourceTree = "<group>"; };
 		257960B816D267E700F448C9 /* GSInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSInputController.m; sourceTree = "<group>"; };
+		2588BBC516D4FC1E00E34208 /* Tutorial7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial7.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2588BBC716D4FCA700E34208 /* tutorial7.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; path = tutorial7.vs; sourceTree = "<group>"; };
+		2588BBC816D4FCB800E34208 /* tutorial7.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; path = tutorial7.fs; sourceTree = "<group>"; };
+		2588BBCB16D4FD3300E34208 /* Tutorial7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial7.m; sourceTree = "<group>"; };
+		2588BBCE16D4FDD800E34208 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		2588BBD116D5188700E34208 /* cube_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube_texture.png; sourceTree = "<group>"; };
 		258B8B8516BA9F290050B7E8 /* Tutorial4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		258B8B8716BA9F7F0050B7E8 /* Tutorial4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial4.m; sourceTree = "<group>"; };
 		258B8B8916BAA0060050B7E8 /* tutorial4.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial4.vs; sourceTree = "<group>"; };
@@ -247,6 +283,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2588BBB816D4FC1E00E34208 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2588BBB916D4FC1E00E34208 /* OpenGL.framework in Frameworks */,
+				2588BBBA16D4FC1E00E34208 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		258B8B7916BA9F290050B7E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,9 +340,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2588BBA116D4FBE100E34208 /* Tutorial7-Model-loading */ = {
+			isa = PBXGroup;
+			children = (
+				2588BBCB16D4FD3300E34208 /* Tutorial7.m */,
+			);
+			name = "Tutorial7-Model-loading";
+			sourceTree = "<group>";
+		};
 		25F6AA7316D11C3C00CC96DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2588BBD116D5188700E34208 /* cube_texture.png */,
+				2588BBCE16D4FDD800E34208 /* cube.obj */,
 				25F6AA7416D11C3C00CC96DF /* uvtemplate.png */,
 			);
 			path = Resources;
@@ -369,6 +424,7 @@
 				258B8B8516BA9F290050B7E8 /* Tutorial4.app */,
 				25F6AA6916D1142000CC96DF /* Tutorial5.app */,
 				25FA668216D3AFB4002BC805 /* Tutorial6.app */,
+				2588BBC516D4FC1E00E34208 /* Tutorial7.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -433,6 +489,7 @@
 		62FDCD9A16B7CDB000FA867D /* BasicTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				2588BBA116D4FBE100E34208 /* Tutorial7-Model-loading */,
 				25FA668816D3B147002BC805 /* Tutorial6-Mouse-and-keyboard */,
 				628795D416D383F200B91622 /* Tutorial5-Texture-cube */,
 				628795D316D383D400B91622 /* Tutorial4-Color-cube */,
@@ -496,6 +553,8 @@
 				25F6AA6F16D11A0900CC96DF /* tutorial5.fs */,
 				25FA668416D3B05A002BC805 /* tutorial6.vs */,
 				25FA668516D3B06E002BC805 /* tutorial6.fs */,
+				2588BBC716D4FCA700E34208 /* tutorial7.vs */,
+				2588BBC816D4FCB800E34208 /* tutorial7.fs */,
 			);
 			path = Shader;
 			sourceTree = "<group>";
@@ -518,6 +577,23 @@
 			name = Tutorial3;
 			productName = "OpenGL-Tutorial";
 			productReference = 2565775016B893090067EEDE /* Tutorial3.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2588BBA216D4FC1E00E34208 /* Tutorial7 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2588BBC216D4FC1E00E34208 /* Build configuration list for PBXNativeTarget "Tutorial7" */;
+			buildPhases = (
+				2588BBA316D4FC1E00E34208 /* Sources */,
+				2588BBB816D4FC1E00E34208 /* Frameworks */,
+				2588BBBB16D4FC1E00E34208 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial7;
+			productName = "OpenGL-Tutorial";
+			productReference = 2588BBC516D4FC1E00E34208 /* Tutorial7.app */;
 			productType = "com.apple.product-type.application";
 		};
 		258B8B6616BA9F290050B7E8 /* Tutorial4 */ = {
@@ -633,6 +709,7 @@
 				258B8B6616BA9F290050B7E8 /* Tutorial4 */,
 				25F6AA4A16D1142000CC96DF /* Tutorial5 */,
 				25FA665F16D3AFB4002BC805 /* Tutorial6 */,
+				2588BBA216D4FC1E00E34208 /* Tutorial7 */,
 			);
 		};
 /* End PBXProject section */
@@ -647,6 +724,21 @@
 				2565774A16B893090067EEDE /* InfoPlist.strings in Resources */,
 				2565774B16B893090067EEDE /* Credits.rtf in Resources */,
 				2565774C16B893090067EEDE /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2588BBBB16D4FC1E00E34208 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2588BBC916D4FCD500E34208 /* tutorial7.vs in Resources */,
+				2588BBCA16D4FCD500E34208 /* tutorial7.fs in Resources */,
+				2588BBBE16D4FC1E00E34208 /* InfoPlist.strings in Resources */,
+				2588BBBF16D4FC1E00E34208 /* Credits.rtf in Resources */,
+				2588BBC016D4FC1E00E34208 /* MainMenu.xib in Resources */,
+				2588BBC116D4FC1E00E34208 /* uvtemplate.png in Resources */,
+				2588BBD016D4FDD800E34208 /* cube.obj in Resources */,
+				2588BBD216D5188700E34208 /* cube_texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,6 +827,33 @@
 				2565774116B893090067EEDE /* vec3.c in Sources */,
 				2565774216B893090067EEDE /* vec4.c in Sources */,
 				2565775316B8949A0067EEDE /* Tutorial3.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2588BBA316D4FC1E00E34208 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2588BBA416D4FC1E00E34208 /* GSInputController.m in Sources */,
+				2588BBA516D4FC1E00E34208 /* main.m in Sources */,
+				2588BBA616D4FC1E00E34208 /* GSAppDelegate.m in Sources */,
+				2588BBA716D4FC1E00E34208 /* GSShaderController.m in Sources */,
+				2588BBA816D4FC1E00E34208 /* GSOpenGLView.m in Sources */,
+				2588BBA916D4FC1E00E34208 /* aabb.c in Sources */,
+				2588BBAA16D4FC1E00E34208 /* mat4stack.c in Sources */,
+				2588BBAB16D4FC1E00E34208 /* matrix.c in Sources */,
+				2588BBAC16D4FC1E00E34208 /* mat3.c in Sources */,
+				2588BBAD16D4FC1E00E34208 /* mat4.c in Sources */,
+				2588BBAE16D4FC1E00E34208 /* plane.c in Sources */,
+				2588BBAF16D4FC1E00E34208 /* quaternion.c in Sources */,
+				2588BBB016D4FC1E00E34208 /* ray2.c in Sources */,
+				2588BBB116D4FC1E00E34208 /* utility.c in Sources */,
+				2588BBB216D4FC1E00E34208 /* vec2.c in Sources */,
+				2588BBB316D4FC1E00E34208 /* vec3.c in Sources */,
+				2588BBB416D4FC1E00E34208 /* vec4.c in Sources */,
+				2588BBB616D4FC1E00E34208 /* GSTextureController.m in Sources */,
+				2588BBB716D4FC1E00E34208 /* GSOpenGLInfoHelper.m in Sources */,
+				2588BBCC16D4FD3300E34208 /* Tutorial7.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +1029,30 @@
 			name = Debug;
 		};
 		2565774F16B893090067EEDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenGL-Tutorial/OpenGL-Tutorial-Prefix.pch";
+				INFOPLIST_FILE = "OpenGL-Tutorial/OpenGL-Tutorial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2588BBC316D4FC1E00E34208 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenGL-Tutorial/OpenGL-Tutorial-Prefix.pch";
+				INFOPLIST_FILE = "OpenGL-Tutorial/OpenGL-Tutorial-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2588BBC416D4FC1E00E34208 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1108,6 +1251,15 @@
 			buildConfigurations = (
 				2565774E16B893090067EEDE /* Debug */,
 				2565774F16B893090067EEDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2588BBC216D4FC1E00E34208 /* Build configuration list for PBXNativeTarget "Tutorial7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2588BBC316D4FC1E00E34208 /* Debug */,
+				2588BBC416D4FC1E00E34208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

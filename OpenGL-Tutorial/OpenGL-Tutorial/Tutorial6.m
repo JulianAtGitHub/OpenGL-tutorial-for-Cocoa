@@ -213,10 +213,6 @@ GLuint vertexArrayObj;
 
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y
 {
-    if (y == 0.0) {
-        return;
-    }
-    
     kmVec3 lookAt;
     kmVec3Subtract(&lookAt, &center, &eye);
     kmScalar distance = kmVec3Length(&lookAt);
