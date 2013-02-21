@@ -42,7 +42,7 @@
     return self;
 }
 
-- (void)addKeyEventDelegate:(id<GSInputDelegate>)delegate
+- (void)addEventDelegate:(id<GSInputDelegate>)delegate
 {
     for (id<GSInputDelegate> obj in _objsForKeyEvent) {
         if ([obj isEqual:delegate]) {
@@ -53,12 +53,21 @@
     [_objsForKeyEvent addObject:delegate];
 }
 
-- (void)removeKeyEventDelegate:(id<GSInputDelegate>)delegate
+- (void)removeEventDelegate:(id<GSInputDelegate>)delegate
 {
     for (id<GSInputDelegate> obj in _objsForKeyEvent) {
         if ([obj isEqual:delegate]) {
             [_objsForKeyEvent removeObject:delegate];
             return;
+        }
+    }
+}
+
+- (void)updateDelegate:(NSTimeInterval)timeInterval
+{
+    for (id<GSInputDelegate> obj in _objsForKeyEvent) {
+        if ([obj respondsToSelector:@selector(updateInput:)]) {
+            [obj updateInput:timeInterval];
         }
     }
 }

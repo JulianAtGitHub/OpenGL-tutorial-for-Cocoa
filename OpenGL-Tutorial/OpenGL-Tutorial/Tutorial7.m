@@ -11,17 +11,13 @@
 #import "GSOpenGLView.h"
 #import "GSShaderController.h"
 #import "GSTextureController.h"
-#import "GSInputController.h"
+#import "GSCameraController.h"
 
 // globle value
 
 NSMutableData *vertexData;
 NSMutableData *uvData;
 GLsizei nTriangle;
-
-kmVec3 eye = {4.0, 3.0, 3.0};
-kmVec3 center = {0.0, 0.0, 0.0};
-kmVec3 up = {0.0, 1.0, 0.0};
 
 GLuint vertexBuffer;
 //GLuint colorBuffer;
@@ -31,7 +27,9 @@ GLuint program;
 GLuint vertexArrayObj;
 
 // class Tutorial4
-@interface Tutorial7 : NSObject <GSOpenGLViewDelegate, GSInputDelegate>
+@interface Tutorial7 : NSObject <GSOpenGLViewDelegate> {
+    GSCameraController *_camera;
+}
 
 @end
 
@@ -125,7 +123,10 @@ GLuint vertexArrayObj;
 
 - (BOOL)prepareRenderData
 {
-    [[GSInputController sharedInputController] addKeyEventDelegate:self];
+    kmVec3 eye = {4.0, 3.0, 3.0};
+    kmVec3 center = {0.0, 0.0, 0.0};
+    kmVec3 up = {0.0, 1.0, 0.0};
+    _camera = [[GSCameraController alloc] initWithEye:eye Center:center Up:up];
     
     [self loadModelFromFile:@"cube.obj"];
     
@@ -188,15 +189,12 @@ GLuint vertexArrayObj;
 - (void)update:(NSTimeInterval)timeInterval
 {
     // matrix with model, view, projection
-    kmMat4 projection;
-    kmMat4 view;
+    kmMat4 projection = [_camera perspectiveMatrix];
+    kmMat4 view = [_camera viewMatrix];
     kmMat4 model;
-    kmMat4 MVP;
-    
-    kmMat4PerspectiveProjection(&projection, 45.0f, 4.0f/3.0f, 0.1f, 100.0f);
-    kmMat4LookAt(&view, &eye, &center, &up);
     kmMat4Identity(&model);
     
+    kmMat4 MVP;
     kmMat4Multiply(&MVP, &projection, &view);
     kmMat4Multiply(&MVP, &MVP, &model);
     

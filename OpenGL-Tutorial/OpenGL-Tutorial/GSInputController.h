@@ -11,6 +11,7 @@
 @protocol GSInputDelegate <NSObject>
 
 @optional
+- (void)updateInput:(NSTimeInterval)timeInterval;
 - (void)keyDown:(unichar)key;
 - (void)keyUp:(unichar)key;
 - (void)mouseLeftDown:(NSPoint)locationInWindow;
@@ -28,8 +29,10 @@
 
 + (GSInputController *)sharedInputController;
 
-- (void)addKeyEventDelegate:(id<GSInputDelegate>)delegate;
-- (void)removeKeyEventDelegate:(id<GSInputDelegate>)delegate;
+- (void)addEventDelegate:(id<GSInputDelegate>)delegate;
+- (void)removeEventDelegate:(id<GSInputDelegate>)delegate;
+
+- (void)updateDelegate:(NSTimeInterval)timeInterval;
 
 - (void)keysDown:(NSString *)keys;
 - (void)keysUp:(NSString *)keys;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2563508C16D6588300720D3B /* GSCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563508B16D6588300720D3B /* GSCameraController.m */; };
+		2563508D16D6588300720D3B /* GSCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563508B16D6588300720D3B /* GSCameraController.m */; };
 		2565773316B893090067EEDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
 		2565773416B893090067EEDE /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
 		2565773516B893090067EEDE /* GSShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSShaderController.m */; };
@@ -194,6 +196,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2563508A16D6588300720D3B /* GSCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCameraController.h; sourceTree = "<group>"; };
+		2563508B16D6588300720D3B /* GSCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCameraController.m; sourceTree = "<group>"; };
 		2565775016B893090067EEDE /* Tutorial3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2565775216B8949A0067EEDE /* Tutorial3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial3.m; sourceTree = "<group>"; };
 		2565775416B8951C0067EEDE /* tutorial3.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial3.vs; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 				25F6AA7A16D12E9A00CC96DF /* GSOpenGLInfoHelper.m */,
 				257960B716D267E700F448C9 /* GSInputController.h */,
 				257960B816D267E700F448C9 /* GSInputController.m */,
+				2563508A16D6588300720D3B /* GSCameraController.h */,
+				2563508B16D6588300720D3B /* GSCameraController.m */,
 				62FDCD9B16B7CEF300FA867D /* kazmath */,
 				62FDCD9A16B7CDB000FA867D /* BasicTutorial */,
 				62FDCDE516B7D0D600FA867D /* Shader */,
@@ -854,6 +860,7 @@
 				2588BBB616D4FC1E00E34208 /* GSTextureController.m in Sources */,
 				2588BBB716D4FC1E00E34208 /* GSOpenGLInfoHelper.m in Sources */,
 				2588BBCC16D4FD3300E34208 /* Tutorial7.m in Sources */,
+				2563508D16D6588300720D3B /* GSCameraController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +940,7 @@
 				25FA667316D3AFB4002BC805 /* GSTextureController.m in Sources */,
 				25FA667416D3AFB4002BC805 /* GSOpenGLInfoHelper.m in Sources */,
 				25FA668A16D3B19A002BC805 /* Tutorial6.m in Sources */,
+				2563508C16D6588300720D3B /* GSCameraController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

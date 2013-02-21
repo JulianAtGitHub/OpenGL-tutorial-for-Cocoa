@@ -39,6 +39,7 @@
     }
     
     if ([self.delegate respondsToSelector:@selector(update:)]) {
+        [[GSInputController sharedInputController] updateDelegate:[theTimer timeInterval]];
         [self.delegate update:[theTimer timeInterval]];
         [self drawRect:[self bounds]];
     }

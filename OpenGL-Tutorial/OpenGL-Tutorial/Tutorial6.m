@@ -134,8 +134,6 @@ static const kmVec2 uvBufferData[] = {
 
 float moveSpeed = 3.0f;
 float rotateSpeed = 0.01f;
-double thetaX = 0.0;
-double thetaY = 0.0;
 kmVec3 eye = {0.0, 0.0, 6.0};
 kmVec3 center = {0.0, 0.0, 0.0};
 kmVec3 up = {0.0, 1.0, 0.0};
@@ -157,7 +155,7 @@ GLuint vertexArrayObj;
 
 - (BOOL)prepareRenderData
 {
-    [[GSInputController sharedInputController] addKeyEventDelegate:self];
+    [[GSInputController sharedInputController] addEventDelegate:self];
     
     GSTextureController *textureController = [GSTextureController sharedTextureController];
     texture = [textureController textureWithFileName:@"uvtemplate.png" useMipmap:YES];
@@ -213,56 +211,68 @@ GLuint vertexArrayObj;
 
 - (void)mouseLeftDragWithX:(CGFloat)x andY:(CGFloat)y
 {
-    kmVec3 lookAt;
-    kmVec3Subtract(&lookAt, &center, &eye);
-    kmScalar distance = kmVec3Length(&lookAt);
+    float thetaX = -x * rotateSpeed;
+    float thetaY = -y * rotateSpeed;
     
-    thetaX += -x * rotateSpeed;
-    thetaY += y * rotateSpeed;
+    kmVec3 f, s, u, dist;
     
-    if (thetaX < -M_PI_4) {
-        thetaX = -M_PI_4;
-    }
+    kmVec3Subtract(&f, &center, &eye);
+    kmScalar distance = kmVec3Length(&f);
+    kmVec3Normalize(&f, &f);
     
-    if (thetaX > M_PI_4) {
-        thetaX = M_PI_4;
-    }
+    kmVec3Normalize(&up, &up);
     
-    if (thetaY < -M_PI_4) {
-        thetaY = -M_PI_4;
-    }
+    kmVec3Cross(&s, &f, &up);
+    kmVec3Normalize(&s, &s);
     
-    if (thetaY > M_PI_4) {
-        thetaY = M_PI_4;
-    }
-
-    float deltaX = distance * sin(thetaX);
-    float deltaY = distance * sin(thetaY);
-    float deltaZ = sqrtf(kmSQR(distance) - kmSQR(deltaX) - kmSQR(deltaY));
-    center.x = eye.x - deltaX;
-    center.y = eye.y - deltaY;
-    center.z = eye.z - deltaZ;
+    kmVec3Cross(&u, &s, &f);
+    kmVec3Normalize(&s, &s);
+    
+    kmVec3Fill(&dist, f.x, f.y, f.z);
+    
+    kmQuaternion yaw, pitch;
+    kmQuaternionRotationAxis(&yaw, &u, thetaX);
+    kmQuaternionRotationAxis(&pitch, &s, thetaY);
+    kmQuaternionMultiplyVec3(&dist, &pitch, &dist);
+    kmQuaternionMultiplyVec3(&dist, &yaw, &dist);
+    
+    kmVec3Scale(&dist, &dist, distance);
+    kmVec3Add(&center, &eye, &dist);
 }
 
 - (void)update:(NSTimeInterval)timeInterval
 {
+    kmVec3 f, s, u;
+    
+    kmVec3Subtract(&f, &center, &eye);
+    kmVec3Normalize(&f, &f);
+    
+    kmVec3Normalize(&up, &up);
+    
+    kmVec3Cross(&s, &f, &up);
+    kmVec3Normalize(&s, &s);
+    
+    kmVec3Cross(&u, &s, &f);
+    kmVec3Normalize(&s, &s);
+    
     GSInputController *inputController = [GSInputController sharedInputController];
+    float delta = moveSpeed * timeInterval;
     if ([inputController keyIsPressed:NSLeftArrowFunctionKey]) {
-        float delta = moveSpeed * timeInterval;
-        eye.x -= delta;
-        center.x -= delta;
+        kmVec3Scale(&s, &s, -delta);
+        kmVec3Add(&eye, &eye, &s);
+        kmVec3Add(&center, &center, &s);
     } else if ([inputController keyIsPressed:NSRightArrowFunctionKey]) {
-        float delta = moveSpeed * timeInterval;
-        eye.x += delta;
-        center.x += delta;
+        kmVec3Scale(&s, &s, delta);
+        kmVec3Add(&eye, &eye, &s);
+        kmVec3Add(&center, &center, &s);
     } else if ([inputController keyIsPressed:NSUpArrowFunctionKey]) {
-        float delta = moveSpeed * timeInterval;
-        eye.z -= delta;
-        center.z -= delta;
+        kmVec3Scale(&f, &f, delta);
+        kmVec3Add(&eye, &eye, &f);
+        kmVec3Add(&center, &center, &f);
     } else if ([inputController keyIsPressed:NSDownArrowFunctionKey]) {
-        float delta = moveSpeed * timeInterval;
-        eye.z += delta;
-        center.z += delta;
+        kmVec3Scale(&f, &f, -delta);
+        kmVec3Add(&eye, &eye, &f);
+        kmVec3Add(&center, &center, &f);
     }
     
     // matrix with model, view, projection
