@@ -1,8 +1,8 @@
 //
-//  Tutorial7.m
+//  Tutorial8.m
 //  OpenGL-Tutorial
 //
-//  Created by 朱 巍 on 20/2/13.
+//  Created by 朱 巍 on 23/2/13.
 //  Copyright (c) 2013 Juicer. All rights reserved.
 //
 
@@ -16,24 +16,22 @@
 // globle value
 
 NSMutableData *vertexData;
-NSMutableData *uvData;
+NSMutableData *normalData;
 GLsizei nTriangle;
 
 GLuint vertexBuffer;
-//GLuint colorBuffer;
-GLuint uvBuffer;
-GLuint texture;
+GLuint normalBuffer;
 GLuint program;
 GLuint vertexArrayObj;
 
-// class Tutorial4
-@interface Tutorial7 : NSObject <GSOpenGLViewDelegate> {
+// class Tutorial8
+@interface Tutorial8 : NSObject <GSOpenGLViewDelegate> {
     GSCameraController *_camera;
 }
 
 @end
 
-@implementation Tutorial7
+@implementation Tutorial8
 
 - (BOOL)loadModelFromFile:(NSString *)fileName
 {
@@ -66,18 +64,18 @@ GLuint vertexArrayObj;
     
     
     vertexData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    uvData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec2)];
+    normalData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
     kmVec3 *vertexArray = (kmVec3 *)[vertexData mutableBytes];
-    kmVec2 *uvArray = (kmVec2 *)[uvData mutableBytes];
+    kmVec3 *normalArray = (kmVec3 *)[normalData mutableBytes];
     NSUInteger vertexIndex = 0;
-    NSUInteger uvIndex = 0;
+    NSUInteger normalIndex = 0;
     
     NSMutableData *vertexDataTemp = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    NSMutableData *uvDataTemp = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec2)];
+    NSMutableData *normalDataTemp = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
     kmVec3 *vertexArrayTemp = (kmVec3 *)[vertexDataTemp mutableBytes];
-    kmVec2 *uvArrayTemp = (kmVec2 *)[uvDataTemp mutableBytes];
+    kmVec3 *normalArrayTemp = (kmVec3 *)[normalDataTemp mutableBytes];
     NSUInteger vertexTempIndex = 0;
-    NSUInteger uvTempIndex = 0;
+    NSUInteger normalTempIndex = 0;
     
     file = fopen([fullPath UTF8String], "r");
     while (1) {
@@ -91,12 +89,12 @@ GLuint vertexArrayObj;
             fscanf(file, "%f %f %f\n", &vertexArrayTemp[vertexTempIndex].x, &vertexArrayTemp[vertexTempIndex].y, &vertexArrayTemp[vertexTempIndex].z);
             vertexTempIndex++;
         }
-        if (strcmp(line, "vt") == 0) {
-            fscanf(file, "%f %f\n", &uvArrayTemp[uvTempIndex].x, &uvArrayTemp[uvTempIndex].y);
-            uvTempIndex++;
-        }
         if (strcmp(line, "vn") == 0) {
-            // skip normal
+            fscanf(file, "%f %f %f\n", &normalArrayTemp[normalTempIndex].x, &normalArrayTemp[normalTempIndex].y, &normalArrayTemp[normalTempIndex].z);
+            normalTempIndex++;
+        }
+        if (strcmp(line, "vt") == 0) {
+            // skip texture coord
         }
         
         if (strcmp(line, "f") == 0) {
@@ -110,9 +108,9 @@ GLuint vertexArrayObj;
             memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[0]-1], sizeof(kmVec3)); vertexIndex++;
             memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[1]-1], sizeof(kmVec3)); vertexIndex++;
             memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[2]-1], sizeof(kmVec3)); vertexIndex++;
-            memcpy(&uvArray[uvIndex], &uvArrayTemp[indexUV[0]-1], sizeof(kmVec2)); uvIndex++;
-            memcpy(&uvArray[uvIndex], &uvArrayTemp[indexUV[1]-1], sizeof(kmVec2)); uvIndex++;
-            memcpy(&uvArray[uvIndex], &uvArrayTemp[indexUV[2]-1], sizeof(kmVec2)); uvIndex++;
+            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[0]-1], sizeof(kmVec3)); normalIndex++;
+            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[1]-1], sizeof(kmVec3)); normalIndex++;
+            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[2]-1], sizeof(kmVec3)); normalIndex++;
         }
     }
     
@@ -128,31 +126,42 @@ GLuint vertexArrayObj;
     kmVec3 up = {0.0, 1.0, 0.0};
     _camera = [[GSCameraController alloc] initWithEye:eye Center:center Up:up];
     
-    [self loadModelFromFile:@"cube.obj"];
-    
-    GSTextureController *textureController = [GSTextureController sharedTextureController];
-    texture = [textureController textureWithFileName:@"cube_texture.png" useMipmap:NO];
+    [self loadModelFromFile:@"suzanne.obj"];
     
     // handle shaders
     GSShaderController *shaderController = [GSShaderController sharedShaderController];
-    program = [shaderController programWithVertexShaderFile:@"tutorial7.vs" FragmentShaderFile:@"tutorial7.fs"];
+    program = [shaderController programWithVertexShaderFile:@"tutorial8.vs" FragmentShaderFile:@"tutorial8.fs"];
     glUseProgram(program);
     
-    GLint local_image0 = glGetUniformLocation(program, "image0");
-    glActiveTexture(GL_TEXTURE0);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glUniform1i(local_image0, 0);
-    glDisable(GL_TEXTURE_2D);
+    GLint light_direction = glGetUniformLocation(program, "light_direction");
+    glUniform3f(light_direction, 0.0f, 1.0f, 1.0f);
+    
+    GLint light_color = glGetUniformLocation(program, "light_color");
+    glUniform3f(light_color, 1.0f, 1.0f, 1.0f);
+    
+    GLint light_ambient_power = glGetUniformLocation(program, "light_ambient_power");
+    glUniform1f(light_ambient_power, 0.1f);
+    
+    GLint light_diffuse_power = glGetUniformLocation(program, "light_diffuse_power");
+    glUniform1f(light_diffuse_power, 0.7f);
+    
+    GLint light_specular_power = glGetUniformLocation(program, "light_specular_power");
+    glUniform1f(light_specular_power, 0.2f);
+    
+    GLint material_color = glGetUniformLocation(program, "material_color");
+    glUniform3f(material_color, 0.66f, 0.0f, 0.8f);
+    
+    GLint material_shininess = glGetUniformLocation(program, "material_shininess");
+    glUniform1f(material_shininess, 50.0f);
     
     // create vertex attribute buffers
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, [vertexData length], [vertexData mutableBytes], GL_STATIC_DRAW);
     
-    glGenBuffers(1, &uvBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-    glBufferData(GL_ARRAY_BUFFER, [uvData length], [uvData mutableBytes], GL_STATIC_DRAW);
+    glGenBuffers(1, &normalBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+    glBufferData(GL_ARRAY_BUFFER, [normalData length], [normalData mutableBytes], GL_STATIC_DRAW);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
@@ -162,21 +171,13 @@ GLuint vertexArrayObj;
     
     glUseProgram(program);
     
-    glActiveTexture(GL_TEXTURE0);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
     
-    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
-    
-    glBindVertexArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glDisable(GL_TEXTURE_2D);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
     
     return YES;
 }
@@ -197,6 +198,10 @@ GLuint vertexArrayObj;
     
     GLint local_MVP = glGetUniformLocation(program, "MVP");
     glUniformMatrix4fv(local_MVP, 1, GL_FALSE, (GLfloat *)&MVP);
+    
+    kmVec3 eye = _camera.eye;
+    GLint eye_position = glGetUniformLocation(program, "eye_position");
+    glUniform3f(eye_position, eye.x, eye.y, eye.z);
 }
 
 - (void)render;
@@ -222,15 +227,13 @@ GLuint vertexArrayObj;
     glDisable(GL_CULL_FACE);
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
-    Set_OpenGLViewDelegate(Tutorial7);
+    Set_OpenGLViewDelegate(Tutorial8);
 }
 
 - (void)clearGLContext
 {
     glDeleteBuffers(1, &vertexBuffer);
-    //glDeleteBuffers(1, &colorBuffer);
-    glDeleteBuffers(1, &uvBuffer);
-    glDeleteTextures(1, &texture);
+    glDeleteBuffers(1, &normalBuffer);
     glDeleteVertexArrays(1, &vertexArrayObj);
     glDeleteProgram(program);
     
@@ -238,3 +241,4 @@ GLuint vertexArrayObj;
 }
 
 @end
+
