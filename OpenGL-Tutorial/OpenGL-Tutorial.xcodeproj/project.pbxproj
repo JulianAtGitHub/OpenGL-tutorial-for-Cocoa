@@ -117,6 +117,7 @@
 		259A3D9816D7CEB6009490DE /* Tutorial8.m in Sources */ = {isa = PBXBuildFile; fileRef = 259A3D9616D7CE91009490DE /* Tutorial8.m */; };
 		259A3D9916D7CECB009490DE /* tutorial8.vs in Resources */ = {isa = PBXBuildFile; fileRef = 259A3D9216D7CE32009490DE /* tutorial8.vs */; };
 		259A3D9A16D7CECB009490DE /* tutorial8.fs in Resources */ = {isa = PBXBuildFile; fileRef = 259A3D9416D7CE44009490DE /* tutorial8.fs */; };
+		25A6D8EE16DB97F6009E8D09 /* suzanne_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A6D8ED16DB97F6009E8D09 /* suzanne_texture.png */; };
 		25F6AA4C16D1142000CC96DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD7D16B7C8B000FA867D /* main.m */; };
 		25F6AA4D16D1142000CC96DF /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD8416B7C8B000FA867D /* GSAppDelegate.m */; };
 		25F6AA4E16D1142000CC96DF /* GSShaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62FDCD9316B7CD3100FA867D /* GSShaderController.m */; };
@@ -248,6 +249,7 @@
 		259A3D9216D7CE32009490DE /* tutorial8.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial8.vs; sourceTree = "<group>"; };
 		259A3D9416D7CE44009490DE /* tutorial8.fs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial8.fs; sourceTree = "<group>"; };
 		259A3D9616D7CE91009490DE /* Tutorial8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial8.m; sourceTree = "<group>"; };
+		25A6D8ED16DB97F6009E8D09 /* suzanne_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suzanne_texture.png; sourceTree = "<group>"; };
 		25F6AA6916D1142000CC96DF /* Tutorial5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F6AA6B16D114C100CC96DF /* Tutorial5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial5.m; sourceTree = "<group>"; };
 		25F6AA6D16D119FD00CC96DF /* tutorial5.vs */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = tutorial5.vs; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 		25F6AA7316D11C3C00CC96DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				25A6D8ED16DB97F6009E8D09 /* suzanne_texture.png */,
 				259A3D9016D7CE08009490DE /* suzanne.obj */,
 				2588BBD116D5188700E34208 /* cube_texture.png */,
 				2588BBCE16D4FDD800E34208 /* cube.obj */,
@@ -845,6 +848,7 @@
 				259A3D8716D7CD85009490DE /* MainMenu.xib in Resources */,
 				259A3D8816D7CD85009490DE /* uvtemplate.png in Resources */,
 				259A3D9116D7CE08009490DE /* suzanne.obj in Resources */,
+				25A6D8EE16DB97F6009E8D09 /* suzanne_texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

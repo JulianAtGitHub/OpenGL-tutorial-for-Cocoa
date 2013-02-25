@@ -17,10 +17,13 @@
 
 NSMutableData *vertexData;
 NSMutableData *normalData;
+NSMutableData *uvData;
 GLsizei nTriangle;
 
 GLuint vertexBuffer;
 GLuint normalBuffer;
+GLuint uvBuffer;
+GLuint texture;
 GLuint program;
 GLuint vertexArrayObj;
 
@@ -50,53 +53,33 @@ GLuint vertexArrayObj;
     }
     
     nTriangle = 0;
+    NSMutableArray *vertexDataTemp = [NSMutableArray array];
+    NSMutableArray *normalDataTemp = [NSMutableArray array];
+    NSMutableArray *uvDataTemp = [NSMutableArray array];
+    NSMutableArray *triangleDataTemp = [NSMutableArray array];
     while (1) {
+
         char line[128];
         if (fscanf(file, "%s", line) == EOF) {
             break;
         }
-        
-        if (strcmp(line, "f") == 0) {
-            nTriangle++;
-        }
-    }
-    fclose(file);
-    
-    
-    vertexData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    normalData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    kmVec3 *vertexArray = (kmVec3 *)[vertexData mutableBytes];
-    kmVec3 *normalArray = (kmVec3 *)[normalData mutableBytes];
-    NSUInteger vertexIndex = 0;
-    NSUInteger normalIndex = 0;
-    
-    NSMutableData *vertexDataTemp = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    NSMutableData *normalDataTemp = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
-    kmVec3 *vertexArrayTemp = (kmVec3 *)[vertexDataTemp mutableBytes];
-    kmVec3 *normalArrayTemp = (kmVec3 *)[normalDataTemp mutableBytes];
-    NSUInteger vertexTempIndex = 0;
-    NSUInteger normalTempIndex = 0;
-    
-    file = fopen([fullPath UTF8String], "r");
-    while (1) {
-        
-        char line[128];
-        if (fscanf(file, "%s", line) == EOF) {
-            break;
-        }
-        
+
         if (strcmp(line, "v") == 0) {
-            fscanf(file, "%f %f %f\n", &vertexArrayTemp[vertexTempIndex].x, &vertexArrayTemp[vertexTempIndex].y, &vertexArrayTemp[vertexTempIndex].z);
-            vertexTempIndex++;
+            kmVec3 v;
+            fscanf(file, "%f %f %f\n", &v.x, &v.y, &v.z);
+            [vertexDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:v.x], [NSNumber numberWithFloat:v.y], [NSNumber numberWithFloat:v.z], nil]];
         }
         if (strcmp(line, "vn") == 0) {
-            fscanf(file, "%f %f %f\n", &normalArrayTemp[normalTempIndex].x, &normalArrayTemp[normalTempIndex].y, &normalArrayTemp[normalTempIndex].z);
-            normalTempIndex++;
+            kmVec3 vn;
+            fscanf(file, "%f %f %f\n", &vn.x, &vn.y, &vn.z);
+            [normalDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:vn.x], [NSNumber numberWithFloat:vn.y], [NSNumber numberWithFloat:vn.z], nil]];
         }
         if (strcmp(line, "vt") == 0) {
-            // skip texture coord
+            kmVec3 vt;
+            fscanf(file, "%f %f\n", &vt.x, &vt.y);
+            [uvDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:vt.x], [NSNumber numberWithFloat:vt.y], nil]];
         }
-        
+
         if (strcmp(line, "f") == 0) {
             unsigned int indexVertex[3], indexUV[3], indexNormal[3];
             int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &indexVertex[0], &indexUV[0], &indexNormal[0], &indexVertex[1], &indexUV[1], &indexNormal[1], &indexVertex[2], &indexUV[2], &indexNormal[2] );
@@ -105,13 +88,36 @@ GLuint vertexArrayObj;
                 return NO;
             }
             
-            memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[0]-1], sizeof(kmVec3)); vertexIndex++;
-            memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[1]-1], sizeof(kmVec3)); vertexIndex++;
-            memcpy(&vertexArray[vertexIndex], &vertexArrayTemp[indexVertex[2]-1], sizeof(kmVec3)); vertexIndex++;
-            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[0]-1], sizeof(kmVec3)); normalIndex++;
-            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[1]-1], sizeof(kmVec3)); normalIndex++;
-            memcpy(&normalArray[normalIndex], &normalArrayTemp[indexNormal[2]-1], sizeof(kmVec3)); normalIndex++;
+            [triangleDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:indexVertex[0]-1], [NSNumber numberWithUnsignedInt:indexUV[0]-1], [NSNumber numberWithUnsignedInt:indexNormal[0]-1], nil]];
+            
+            [triangleDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:indexVertex[1]-1], [NSNumber numberWithUnsignedInt:indexUV[1]-1], [NSNumber numberWithUnsignedInt:indexNormal[1]-1], nil]];
+            
+            [triangleDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:indexVertex[2]-1], [NSNumber numberWithUnsignedInt:indexUV[2]-1], [NSNumber numberWithUnsignedInt:indexNormal[2]-1], nil]];
+            
+            nTriangle++;
         }
+    }
+    
+    vertexData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
+    normalData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec3)];
+    uvData = [NSMutableData dataWithLength:nTriangle*3*sizeof(kmVec2)];
+    kmVec3 *vertexArray = (kmVec3 *)[vertexData mutableBytes];
+    kmVec3 *normalArray = (kmVec3 *)[normalData mutableBytes];
+    kmVec2 *uvArray = (kmVec2 *)[uvData mutableBytes];
+    
+    for (unsigned int i = 0; i < nTriangle*3; ++i) {
+        NSArray *indexData = [triangleDataTemp objectAtIndex:i];
+        unsigned int indexVertex = [[indexData objectAtIndex:0] unsignedIntValue];
+        unsigned int indexUV = [[indexData objectAtIndex:1] unsignedIntValue];
+        unsigned int indexNormal = [[indexData objectAtIndex:2] unsignedIntValue];
+        vertexArray[i].x = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:0] floatValue];
+        vertexArray[i].y = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:1] floatValue];
+        vertexArray[i].z = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:2] floatValue];
+        normalArray[i].x = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:0] floatValue];
+        normalArray[i].y = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:1] floatValue];
+        normalArray[i].z = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:2] floatValue];
+        uvArray[i].x = [[[uvDataTemp objectAtIndex:indexUV] objectAtIndex:0] floatValue];
+        uvArray[i].y = [[[uvDataTemp objectAtIndex:indexUV] objectAtIndex:1] floatValue];
     }
     
     fclose(file);
@@ -128,10 +134,20 @@ GLuint vertexArrayObj;
     
     [self loadModelFromFile:@"suzanne.obj"];
     
+    GSTextureController *textureController = [GSTextureController sharedTextureController];
+    texture = [textureController textureWithFileName:@"suzanne_texture.png" useMipmap:NO];
+    
     // handle shaders
     GSShaderController *shaderController = [GSShaderController sharedShaderController];
     program = [shaderController programWithVertexShaderFile:@"tutorial8.vs" FragmentShaderFile:@"tutorial8.fs"];
     glUseProgram(program);
+    
+    GLint local_image0 = glGetUniformLocation(program, "image0");
+    glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glUniform1i(local_image0, 0);
+    glDisable(GL_TEXTURE_2D);
     
     GLint light_direction = glGetUniformLocation(program, "light_direction");
     glUniform3f(light_direction, 0.0f, 1.0f, 1.0f);
@@ -148,9 +164,6 @@ GLuint vertexArrayObj;
     GLint light_specular_power = glGetUniformLocation(program, "light_specular_power");
     glUniform1f(light_specular_power, 0.2f);
     
-    GLint material_color = glGetUniformLocation(program, "material_color");
-    glUniform3f(material_color, 0.66f, 0.0f, 0.8f);
-    
     GLint material_shininess = glGetUniformLocation(program, "material_shininess");
     glUniform1f(material_shininess, 50.0f);
     
@@ -162,6 +175,10 @@ GLuint vertexArrayObj;
     glGenBuffers(1, &normalBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
     glBufferData(GL_ARRAY_BUFFER, [normalData length], [normalData mutableBytes], GL_STATIC_DRAW);
+    
+    glGenBuffers(1, &uvBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glBufferData(GL_ARRAY_BUFFER, [uvData length], [uvData mutableBytes], GL_STATIC_DRAW);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
@@ -178,6 +195,14 @@ GLuint vertexArrayObj;
     glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
+    
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glDisable(GL_TEXTURE_2D);
     
     return YES;
 }
@@ -234,6 +259,8 @@ GLuint vertexArrayObj;
 {
     glDeleteBuffers(1, &vertexBuffer);
     glDeleteBuffers(1, &normalBuffer);
+    glDeleteBuffers(1, &uvBuffer);
+    glDeleteTextures(1, &texture);
     glDeleteVertexArrays(1, &vertexArrayObj);
     glDeleteProgram(program);
     
