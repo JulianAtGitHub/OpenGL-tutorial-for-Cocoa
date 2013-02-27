@@ -67,17 +67,17 @@ GLuint vertexArrayObj;
         if (strcmp(line, "v") == 0) {
             kmVec3 v;
             fscanf(file, "%f %f %f\n", &v.x, &v.y, &v.z);
-            [vertexDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:v.x], [NSNumber numberWithFloat:v.y], [NSNumber numberWithFloat:v.z], nil]];
+            [vertexDataTemp addObject:[NSValue valueWithBytes:&v objCType:@encode(kmVec3)]];
         }
         if (strcmp(line, "vn") == 0) {
             kmVec3 vn;
             fscanf(file, "%f %f %f\n", &vn.x, &vn.y, &vn.z);
-            [normalDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:vn.x], [NSNumber numberWithFloat:vn.y], [NSNumber numberWithFloat:vn.z], nil]];
+            [normalDataTemp addObject:[NSValue valueWithBytes:&vn objCType:@encode(kmVec3)]];
         }
         if (strcmp(line, "vt") == 0) {
-            kmVec3 vt;
+            kmVec2 vt;
             fscanf(file, "%f %f\n", &vt.x, &vt.y);
-            [uvDataTemp addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:vt.x], [NSNumber numberWithFloat:vt.y], nil]];
+            [uvDataTemp addObject:[NSValue valueWithBytes:&vt objCType:@encode(kmVec2)]];
         }
 
         if (strcmp(line, "f") == 0) {
@@ -110,14 +110,9 @@ GLuint vertexArrayObj;
         unsigned int indexVertex = [[indexData objectAtIndex:0] unsignedIntValue];
         unsigned int indexUV = [[indexData objectAtIndex:1] unsignedIntValue];
         unsigned int indexNormal = [[indexData objectAtIndex:2] unsignedIntValue];
-        vertexArray[i].x = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:0] floatValue];
-        vertexArray[i].y = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:1] floatValue];
-        vertexArray[i].z = [[[vertexDataTemp objectAtIndex:indexVertex] objectAtIndex:2] floatValue];
-        normalArray[i].x = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:0] floatValue];
-        normalArray[i].y = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:1] floatValue];
-        normalArray[i].z = [[[normalDataTemp objectAtIndex:indexNormal] objectAtIndex:2] floatValue];
-        uvArray[i].x = [[[uvDataTemp objectAtIndex:indexUV] objectAtIndex:0] floatValue];
-        uvArray[i].y = [[[uvDataTemp objectAtIndex:indexUV] objectAtIndex:1] floatValue];
+        [[vertexDataTemp objectAtIndex:indexVertex] getValue:&vertexArray[i]];
+        [[normalDataTemp objectAtIndex:indexNormal] getValue:&normalArray[i]];
+        [[uvDataTemp objectAtIndex:indexUV] getValue:&uvArray[i]];
     }
     
     fclose(file);
