@@ -18,3 +18,5 @@ Tutorial06: Mouse and keyboard
 Tutorial07: Model loading
 
 Tutorial08: Basic shading
+
+Tutorial09: VBO indexing
