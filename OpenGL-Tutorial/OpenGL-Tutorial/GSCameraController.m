@@ -60,19 +60,27 @@
     
     GSInputController *inputController = [GSInputController sharedInputController];
     float delta = _moveSpeed * timeInterval;
-    if ([inputController keyIsPressed:NSLeftArrowFunctionKey]) {
+    if ([inputController keyIsPressed:NSLeftArrowFunctionKey]
+        || [inputController keyIsPressed:'a']
+        || [inputController keyIsPressed:'A']) {
         kmVec3Scale(&s, &s, -delta);
         kmVec3Add(&_eye, &_eye, &s);
         kmVec3Add(&_center, &_center, &s);
-    } else if ([inputController keyIsPressed:NSRightArrowFunctionKey]) {
+    } else if ([inputController keyIsPressed:NSRightArrowFunctionKey]
+               || [inputController keyIsPressed:'d']
+               || [inputController keyIsPressed:'D']) {
         kmVec3Scale(&s, &s, delta);
         kmVec3Add(&_eye, &_eye, &s);
         kmVec3Add(&_center, &_center, &s);
-    } else if ([inputController keyIsPressed:NSUpArrowFunctionKey]) {
+    } else if ([inputController keyIsPressed:NSUpArrowFunctionKey]
+               || [inputController keyIsPressed:'w']
+               || [inputController keyIsPressed:'W']) {
         kmVec3Scale(&f, &f, delta);
         kmVec3Add(&_eye, &_eye, &f);
         kmVec3Add(&_center, &_center, &f);
-    } else if ([inputController keyIsPressed:NSDownArrowFunctionKey]) {
+    } else if ([inputController keyIsPressed:NSDownArrowFunctionKey]
+               || [inputController keyIsPressed:'s']
+               || [inputController keyIsPressed:'S']) {
         kmVec3Scale(&f, &f, -delta);
         kmVec3Add(&_eye, &_eye, &f);
         kmVec3Add(&_center, &_center, &f);

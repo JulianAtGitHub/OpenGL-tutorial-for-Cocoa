@@ -84,16 +84,16 @@
     return YES;
 }
 
-- (BOOL)becomeFirstResponder
-{
-    return YES;
-}
+//- (BOOL)becomeFirstResponder
+//{
+//    return YES;
+//}
 
 #pragma mark - keyboard and mouse event
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-    [super keyDown:theEvent];
+    //[super keyDown:theEvent];
     
     NSString *characters = [theEvent characters];
     [[GSInputController sharedInputController] keysDown:characters];
@@ -103,7 +103,7 @@
 
 - (void)keyUp:(NSEvent *)theEvent
 {
-    [super keyUp:theEvent];
+    //[super keyUp:theEvent];
     
     NSString *characters = [theEvent characters];
     [[GSInputController sharedInputController] keysUp:characters];
@@ -113,7 +113,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    [super mouseDown:theEvent];
+    //[super mouseDown:theEvent];
     
     NSPoint location = [theEvent locationInWindow];
     [[GSInputController sharedInputController] mouseLeftDown:location];
@@ -123,7 +123,7 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    [super mouseUp:theEvent];
+    //[super mouseUp:theEvent];
     
     NSPoint location = [theEvent locationInWindow];
     [[GSInputController sharedInputController] mouseLeftUp:location];
@@ -133,7 +133,7 @@
 
 - (void)rightMouseDown:(NSEvent *)theEvent
 {
-    [super rightMouseDown:theEvent];
+    //[super rightMouseDown:theEvent];
     
     NSPoint location = [theEvent locationInWindow];
     [[GSInputController sharedInputController] mouseRightDown:location];
@@ -143,7 +143,7 @@
 
 - (void)rightMouseUp:(NSEvent *)theEvent
 {
-    [super rightMouseUp:theEvent];
+    //[super rightMouseUp:theEvent];
     
     NSPoint location = [theEvent locationInWindow];
     [[GSInputController sharedInputController] mouseRightUp:location];
@@ -153,7 +153,7 @@
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-    [super mouseMoved:theEvent];
+    //[super mouseMoved:theEvent];
     
     CGFloat x = [theEvent deltaX];
     CGFloat y = [theEvent deltaY];
@@ -164,7 +164,7 @@
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
-    [super mouseDragged:theEvent];
+    //[super mouseDragged:theEvent];
     
     CGFloat x = [theEvent deltaX];
     CGFloat y = [theEvent deltaY];
@@ -175,7 +175,7 @@
 
 - (void)rightMouseDragged:(NSEvent *)theEvent
 {
-    [super rightMouseDragged:theEvent];
+    //[super rightMouseDragged:theEvent];
     
     CGFloat x = [theEvent deltaX];
     CGFloat y = [theEvent deltaY];
@@ -186,7 +186,7 @@
 
 - (void)scrollWheel:(NSEvent *)theEvent
 {
-    [super scrollWheel:theEvent];
+    //[super scrollWheel:theEvent];
     
     CGFloat x = [theEvent scrollingDeltaX];
     CGFloat y = [theEvent scrollingDeltaY];
@@ -197,21 +197,21 @@
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-    [super mouseEntered:theEvent];
+    //[super mouseEntered:theEvent];
     
     NSLog(@"mouseEntered");
 }
 
 - (void)mouseExited:(NSEvent *)theEvent
 {
-    [super mouseExited:theEvent];
+    //[super mouseExited:theEvent];
     
     NSLog(@"mouseExited");
 }
 
 - (void)cursorUpdate:(NSEvent *)theEvent
 {
-    [super cursorUpdate:theEvent];
+    //[super cursorUpdate:theEvent];
     
     NSLog(@"cursorUpdate");
 }
