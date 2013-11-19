@@ -197,7 +197,7 @@ GLuint vertexArrayObj;
     
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glDisable(GL_TEXTURE_2D);
+//    glDisable(GL_TEXTURE_2D);
     
     return YES;
 }
