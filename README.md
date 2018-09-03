@@ -1,4 +1,4 @@
-OpenGL-tutorial-for-Cocoa-master
+OpenGL-tutorial-for-Cocoa
 ================================
 
 These tutorials is use objective-c to rewrite some nehe's OpenGL Tutorials in Mac OS X.
